@@ -14,7 +14,7 @@ services:
       DATABASE_PATH: /data/chinese-decoder.sqlite
       COOKIE_SECURE: "false"
     ports:
-      - "${TAILSCALE_IP:-100.80.180.36}:3001:3001"
+      - "${TAILSCALE_IP:-100.80.180.36}:${TAILSCALE_PORT:-3031}:3001"
     volumes:
       - chinese_decoder_data:/data
     security_opt:

@@ -1,0 +1,27 @@
+name: chinese-decoder
+
+services:
+  web:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    image: chinese-decoder-web:latest
+    container_name: chinese-decoder-web
+    restart: unless-stopped
+    init: true
+    environment:
+      PORT: "3001"
+      DATABASE_PATH: /data/chinese-decoder.sqlite
+      COOKIE_SECURE: "false"
+    ports:
+      - "${TAILSCALE_IP:-100.80.180.36}:3001:3001"
+    volumes:
+      - chinese_decoder_data:/data
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+
+volumes:
+  chinese_decoder_data:
+    name: chinese-decoder-data

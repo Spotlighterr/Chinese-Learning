@@ -24,6 +24,8 @@ npm.cmd start
 
 Sau `build`, `start` phục vụ cả website và API tại `http://localhost:3001`. Có thể đặt `PORT`, `DATABASE_PATH`, `COOKIE_SECURE` bằng biến môi trường. Khi triển khai sau HTTPS, đặt `COOKIE_SECURE=true` và chỉ truy cập qua HTTPS. `.env.example` liệt kê các biến nhưng ứng dụng không tự nạp file `.env`.
 
+Triển khai bằng Docker trên Debian: xem [deploy/README.md](deploy/README.md).
+
 ## Đã có
 
 - Ba câu mẫu với dữ liệu từ và chữ Hán tách khỏi giao diện; trọng tâm là ranh giới từ và nhóm gợi âm `青`.

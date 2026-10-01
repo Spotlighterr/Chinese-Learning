@@ -13,6 +13,6 @@
     "esModuleInterop": true,
     "types": ["node"]
   },
-  "include": ["server/**/*.ts", "src/data/curriculum.ts"],
+  "include": ["server/**/*.ts", "src/data/curriculum.ts", "src/data/lessons.ts"],
   "exclude": ["server/**/*.test.ts"]
 }

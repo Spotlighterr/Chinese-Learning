@@ -4,6 +4,7 @@ import { resolve } from 'node:path'
 import express from 'express'
 import type { Request, Response } from 'express'
 import { sentences, words } from '../src/data/curriculum.ts'
+import { lessons } from '../src/data/lessons.ts'
 import type { Store } from './db.ts'
 import { analyzeSegmentation } from './segmentation.ts'
 
@@ -35,6 +36,21 @@ export function createApp(store: Store, serveClient = false) {
   app.get('/api/progress', (req, res) => {
     res.json(store.progress(sessionId(req, res, store)))
   })
+  app.post('/api/profile', (req, res) => {
+    const profile = req.body ?? {}
+    if (
+      !['new', 'basic', 'intermediate'].includes(profile.level) ||
+      !Number.isInteger(profile.targetHsk) || profile.targetHsk < 1 || profile.targetHsk > 6 ||
+      typeof profile.targetDate !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(profile.targetDate) ||
+      Number.isNaN(Date.parse(profile.targetDate)) ||
+      !Number.isInteger(profile.dailyMinutes) || profile.dailyMinutes < 15 || profile.dailyMinutes > 360 ||
+      typeof profile.handwriting !== 'boolean' ||
+      !['vi-VN', 'en-US'].includes(profile.explanationLocale)
+    ) return res.status(400).json({ error: 'invalid_profile' })
+    const id = sessionId(req, res, store)
+    store.saveProfile(id, profile)
+    return res.json(store.progress(id))
+  })
   app.post('/api/progress/words', (req, res) => {
     const { wordId, saved } = req.body ?? {}
     if (typeof wordId !== 'string' || !Object.hasOwn(words, wordId) || typeof saved !== 'boolean') {
@@ -63,6 +79,36 @@ export function createApp(store: Store, serveClient = false) {
     const id = sessionId(req, res, store)
     store.addAttempt(id, sentenceId, result.correct, result.extra, result.total)
     return res.json({ result, progress: store.progress(id) })
+  })
+  app.post('/api/exercises', (req, res) => {
+    const { lessonId, exerciseId, answer } = req.body ?? {}
+    const lesson = lessons.find((item) => item.id === lessonId)
+    const exercise = lesson?.exercises.find((item) => item.id === exerciseId)
+    if (!lesson || !exercise) return res.status(400).json({ error: 'invalid_exercise' })
+    let correct: boolean
+    if (exercise.kind === 'choice') {
+      if (!Number.isInteger(answer) || answer < 0 || answer >= exercise.options.length) return res.status(400).json({ error: 'invalid_answer' })
+      correct = answer === exercise.correctIndex
+    } else {
+      if (!Array.isArray(answer) || answer.length !== exercise.wordIds.length || new Set(answer).size !== answer.length ||
+        answer.some((id) => typeof id !== 'string' || !exercise.wordIds.includes(id))) return res.status(400).json({ error: 'invalid_answer' })
+      correct = answer.every((id, index) => id === exercise.correctOrder[index])
+    }
+    const id = sessionId(req, res, store)
+    store.addExerciseAttempt(id, lessonId, exerciseId, correct, lesson.exercises.length)
+    return res.json({ correct, progress: store.progress(id) })
+  })
+  app.get('/api/reviews/due', (req, res) => {
+    res.json({ wordIds: store.dueWordIds(sessionId(req, res, store)) })
+  })
+  app.post('/api/reviews', (req, res) => {
+    const { wordId, rating } = req.body ?? {}
+    if (typeof wordId !== 'string' || !Object.hasOwn(words, wordId) || !['again', 'good'].includes(rating)) {
+      return res.status(400).json({ error: 'invalid_review' })
+    }
+    const id = sessionId(req, res, store)
+    if (!store.rateReview(id, wordId, rating)) return res.status(409).json({ error: 'review_not_due' })
+    return res.json({ wordIds: store.dueWordIds(id), progress: store.progress(id) })
   })
 
   app.use('/api', (_req, res) => res.status(404).json({ error: 'not_found' }))

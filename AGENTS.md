@@ -2,6 +2,8 @@
 
 Read this file before changing the product. Keep it at the root of the `Chineseapp` repository so future sessions inherit these requirements. Read relevant files in `docs/` once they exist. Preserve useful existing work and document major product decisions.
 
+When resuming work, read `docs/SESSION_PROGRESS.md` for the current branch, deployment state, and next steps.
+
 ## Product and learner
 
 - Build a serious Mandarin learning system for an adult Vietnamese learner starting near zero. The ambitious goal is to approach HSK 6 in about six months of intensive study while developing real Mandarin competence. HSK is an assessment checkpoint, not the whole curriculum.

@@ -1,6 +1,6 @@
 {
   "extends": "./tsconfig.server.json",
   "compilerOptions": { "outDir": "dist-test" },
-  "include": ["server/**/*.ts", "src/data/curriculum.ts"],
+  "include": ["server/**/*.ts", "src/data/curriculum.ts", "src/data/lessons.ts"],
   "exclude": []
 }

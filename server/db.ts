@@ -1,6 +1,7 @@
 import { mkdirSync } from 'node:fs'
 import { dirname } from 'node:path'
 import { DatabaseSync } from 'node:sqlite'
+import { lessons } from '../src/data/lessons.ts'
 import { scheduleReview, type ReviewRating } from './review.ts'
 
 export type LearningProfile = {
@@ -111,14 +112,16 @@ export function createStore(path: string) {
           bestBySentence[sentenceId] = candidate
         }
       }
-      const completedLessonIds = db.prepare('SELECT lesson_id FROM completed_lessons WHERE session_id = ?').all(sessionId)
-        .map((row) => String(row.lesson_id))
       const passedExerciseIdsByLesson: Progress['passedExerciseIdsByLesson'] = {}
       const passedRows = db.prepare('SELECT DISTINCT lesson_id, exercise_id FROM exercise_attempts WHERE session_id = ? AND correct = 1').all(sessionId)
       for (const row of passedRows) {
         const lessonId = String(row.lesson_id)
         ;(passedExerciseIdsByLesson[lessonId] ??= []).push(String(row.exercise_id))
       }
+      const completedLessonIds = lessons.filter((lesson) => {
+        const passed = new Set(passedExerciseIdsByLesson[lesson.id] ?? [])
+        return lesson.exercises.every((exercise) => passed.has(exercise.id))
+      }).map((lesson) => lesson.id)
       const exerciseAttemptsCount = Number(db.prepare('SELECT COUNT(*) AS count FROM exercise_attempts WHERE session_id = ?').get(sessionId)?.count ?? 0)
       const dueReviewCount = Number(db.prepare('SELECT COUNT(*) AS count FROM review_items WHERE session_id = ? AND due_at <= ?').get(sessionId, Date.now())?.count ?? 0)
       return { completedSentenceIds, savedWordIds, attemptsCount: attemptRows.length, bestBySentence, profile: this.profile(sessionId), completedLessonIds, passedExerciseIdsByLesson, exerciseAttemptsCount, dueReviewCount }

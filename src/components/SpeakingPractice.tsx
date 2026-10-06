@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import type { Locale } from '../data/curriculum'
 import { contentMatch } from '../speaking-score'
+import { speakChinese } from '../speech'
 
 type RecognitionResultEvent = { results: ArrayLike<ArrayLike<{ transcript: string }>> }
 type RecognitionErrorEvent = { error: string }
@@ -81,13 +82,7 @@ export function SpeakingPractice({ locale, hanzi, pinyin }: { locale: Locale; ha
   }, [])
 
   function playModel() {
-    if (!('speechSynthesis' in window)) { setError(labels.unavailable); return }
-    speechSynthesis.cancel()
-    const utterance = new SpeechSynthesisUtterance(hanzi)
-    utterance.lang = 'zh-CN'; utterance.rate = 0.85
-    const voice = speechSynthesis.getVoices().find((item) => item.lang.toLowerCase().startsWith('zh'))
-    if (voice) utterance.voice = voice
-    speechSynthesis.speak(utterance)
+    if (!speakChinese(hanzi)) setError(labels.unavailable)
   }
 
   async function start() {

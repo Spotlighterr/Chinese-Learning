@@ -86,7 +86,7 @@ export function createApp(store: Store, serveClient = false) {
     const exercise = lesson?.exercises.find((item) => item.id === exerciseId)
     if (!lesson || !exercise) return res.status(400).json({ error: 'invalid_exercise' })
     let correct: boolean
-    if (exercise.kind === 'choice') {
+    if (exercise.kind === 'choice' || exercise.kind === 'listen-choice') {
       if (!Number.isInteger(answer) || answer < 0 || answer >= exercise.options.length) return res.status(400).json({ error: 'invalid_answer' })
       correct = answer === exercise.correctIndex
     } else if (exercise.kind === 'order') {

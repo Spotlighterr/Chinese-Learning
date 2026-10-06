@@ -2,10 +2,12 @@
 
 ## Tiếp tục xây khóa học ngày 2026-10-07
 
-- Nhánh `feature/course-foundation` bổ sung 3 bài đầu về chào hỏi, giới thiệu và việc học, cùng 3 bài dùng lại mẫu câu; tổng cộng hiện có 3 cụm/9 bài/9 câu/21 câu hỏi. Có câu hỏi gõ chữ Hán qua bộ gõ Pinyin và chấm trên server.
+- Nhánh `feature/course-foundation` bổ sung 3 bài đầu về chào hỏi, giới thiệu và việc học, cùng 3 bài dùng lại mẫu câu; tổng cộng hiện có 3 cụm/9 bài/9 câu/23 câu hỏi. Có câu hỏi gõ chữ Hán qua bộ gõ Pinyin, bài nghe hiểu, và chấm trên server.
 - API tiến độ trả về các mã câu hỏi từng trả lời đúng; giao diện chọn bài còn thiếu và tiếp tục từ câu chưa xong sau khi tải lại. Lộ trình bài học được nhóm theo cụm và liên kết sang Bộ phân tích câu.
 - Kiểm tra toàn vẹn dữ liệu, API chấm gõ chữ Hán, `typecheck`, `test`, `build` đều qua. Chrome với backend thật đã xác nhận hồ sơ, trắc nghiệm, gõ Hán tự, tiếp tục bài sau tải lại; viewport 390px không tràn ngang.
 - Xem `docs/COURSE_BUILD.md` để biết thứ tự mở rộng và tiêu chí gọi là khóa học hoàn chỉnh. Chưa phủ nội dung HSK 1–6; chưa chấm chuẩn phát âm/thanh điệu. Nhánh này chưa được đưa lên `main` hoặc server.
+- Đã kiểm kê bộ PDF/MP3 HSK 1–6 mới có trong workspace, xác định đây là bộ Giáo trình chuẩn HSK sáu cấp cũ; xem `docs/HSK_SOURCE_AUDIT.md`. File sách/MP3 được giữ cục bộ, không đưa lên Git hoặc vào app. Bài nghe hiểu dùng giọng tổng hợp từ câu tự biên soạn.
+- Tiến độ hoàn thành bài được tính từ các câu hỏi hiện hành; nếu bài có thêm câu hỏi mới thì bài được mở lại cho đến khi trả lời đủ. Chrome với backend thật đã kiểm tra liên tiếp lựa chọn, nghe hiểu, gõ chữ Hán, tải lại và tiếp tục bài sau; viewport 390px không tràn ngang.
 
 ## CI/CD chuẩn bị ngày 2026-10-07
 

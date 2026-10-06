@@ -10,8 +10,8 @@ const copy = {
 } as const
 
 const courseCopy = {
-  'vi-VN': { recommended: 'Bài tiếp theo', openDecoder: 'Mở câu trong bộ phân tích', typingHint: 'Gõ chữ Hán bằng bộ gõ Pinyin. Có thể bỏ dấu câu.' },
-  'en-US': { recommended: 'Up next', openDecoder: 'Open in Sentence Decoder', typingHint: 'Type Hanzi with a Pinyin IME. Punctuation is optional.' },
+  'vi-VN': { recommended: 'Bài tiếp theo', openDecoder: 'Mở câu trong bộ phân tích', typingHint: 'Gõ chữ Hán bằng bộ gõ Pinyin. Có thể bỏ dấu câu.', playSentence: 'Nghe câu', showListeningText: 'Hiện chữ để hỗ trợ' },
+  'en-US': { recommended: 'Up next', openDecoder: 'Open in Sentence Decoder', typingHint: 'Type Hanzi with a Pinyin IME. Punctuation is optional.', playSentence: 'Play sentence', showListeningText: 'Show text for help' },
 } as const
 
 export type LearningKey = keyof typeof copy['vi-VN'] | keyof typeof courseCopy['vi-VN']

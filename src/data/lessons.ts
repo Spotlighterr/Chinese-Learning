@@ -26,7 +26,14 @@ export type InputExercise = BaseExercise & {
   answer: string
 }
 
-export type Exercise = ChoiceExercise | OrderExercise | InputExercise
+export type ListeningExercise = BaseExercise & {
+  kind: 'listen-choice'
+  skill: 'listening'
+  options: LocalizedText[]
+  correctIndex: number
+}
+
+export type Exercise = ChoiceExercise | OrderExercise | InputExercise | ListeningExercise
 
 export type Lesson = {
   id: string
@@ -53,6 +60,17 @@ export const lessons: Lesson[] = [
         ],
         correctIndex: 0,
         explanation: { 'vi-VN': '你好 / nǐ hǎo là một lời chào thông dụng. Hai âm tiết đều có thanh 3 trên Pinyin cơ bản.', 'en-US': '你好 / nǐ hǎo is a common greeting. Both syllables have third tone in their underlying Pinyin.' },
+      },
+      {
+        id: 'hello-listen', kind: 'listen-choice', skill: 'listening',
+        prompt: { 'vi-VN': 'Nghe câu và chọn nghĩa bạn nghe được.', 'en-US': 'Listen and choose the meaning you hear.' },
+        options: [
+          { 'vi-VN': 'Xin chào.', 'en-US': 'Hello.' },
+          { 'vi-VN': 'Tôi là học sinh.', 'en-US': 'I am a student.' },
+          { 'vi-VN': 'Tôi uống nước.', 'en-US': 'I drink water.' },
+        ],
+        correctIndex: 0,
+        explanation: { 'vi-VN': 'Câu bạn nghe là 你好 / nǐ hǎo, một lời chào.', 'en-US': 'You heard 你好 / nǐ hǎo, a greeting.' },
       },
       {
         id: 'hello-type', kind: 'input', skill: 'hanzi-typing',
@@ -149,6 +167,17 @@ export const lessons: Lesson[] = [
         ],
         correctIndex: 0,
         explanation: { 'vi-VN': '今天 / jīntiān nghĩa là hôm nay; nó đứng trước 去 trong câu này.', 'en-US': '今天 / jīntiān means today; here it comes before 去.' },
+      },
+      {
+        id: 'go-school-listen', kind: 'listen-choice', skill: 'listening',
+        prompt: { 'vi-VN': 'Nghe câu và chọn điều người nói muốn diễn đạt.', 'en-US': 'Listen and choose what the speaker says.' },
+        options: [
+          { 'vi-VN': 'Hôm nay tôi đến trường.', 'en-US': 'I go to school today.' },
+          { 'vi-VN': 'Hôm nay thời tiết quang đãng.', 'en-US': 'The weather is clear today.' },
+          { 'vi-VN': 'Tôi muốn học tiếng Trung.', 'en-US': 'I want to study Chinese.' },
+        ],
+        correctIndex: 0,
+        explanation: { 'vi-VN': 'Bạn nghe 我今天去学校: 我 (tôi), 今天 (hôm nay), 去学校 (đến trường).', 'en-US': 'You heard 我今天去学校: 我 (I), 今天 (today), 去学校 (go to school).' },
       },
       {
         id: 'go-school-order', kind: 'order', skill: 'sentence-order',

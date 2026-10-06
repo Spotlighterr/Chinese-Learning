@@ -41,7 +41,10 @@ test('course content has complete references and translations', () => {
         assert.ok(exercise.prompt[locale].trim(), exercise.id)
         assert.ok(exercise.explanation[locale].trim(), exercise.id)
       }
-      if (exercise.kind === 'choice') assert.ok(exercise.correctIndex >= 0 && exercise.correctIndex < exercise.options.length, exercise.id)
+      if (exercise.kind === 'choice' || exercise.kind === 'listen-choice') {
+        assert.ok(exercise.correctIndex >= 0 && exercise.correctIndex < exercise.options.length, exercise.id)
+        for (const option of exercise.options) for (const locale of ['vi-VN', 'en-US'] as const) assert.ok(option[locale].trim(), exercise.id)
+      }
       if (exercise.kind === 'order') assert.deepEqual(new Set(exercise.wordIds), new Set(exercise.correctOrder), exercise.id)
       if (exercise.kind === 'input') assert.ok(exercise.answer.trim(), exercise.id)
     }
@@ -103,6 +106,11 @@ test('anonymous learner progress persists across API requests and segmentation i
     assert.equal((await json<{ correct: boolean }>(wrongInput)).correct, false)
     const typedResponse = await post('/api/exercises', { lessonId: 'first-greeting', exerciseId: 'hello-type', answer: '你 好。' })
     assert.equal((await json<{ correct: boolean }>(typedResponse)).correct, true)
+    assert.equal((await post('/api/exercises', { lessonId: 'first-greeting', exerciseId: 'hello-listen', answer: 'hello' })).status, 400)
+    const listeningResponse = await post('/api/exercises', { lessonId: 'first-greeting', exerciseId: 'hello-listen', answer: 0 })
+    assert.equal((await json<{ correct: boolean }>(listeningResponse)).correct, true)
+    const greetingResponse = await post('/api/exercises', { lessonId: 'first-greeting', exerciseId: 'hello-meaning', answer: 0 })
+    assert.equal((await json<{ correct: boolean }>(greetingResponse)).correct, true)
 
     const completedResponse = await post('/api/progress/sentences', { sentenceId: 'school' })
     assert.equal(completedResponse.status, 200)
@@ -122,10 +130,10 @@ test('anonymous learner progress persists across API requests and segmentation i
     assert.deepEqual(reloaded.completedSentenceIds, ['school'])
     assert.equal(reloaded.attemptsCount, 2)
     assert.deepEqual(reloaded.bestBySentence.water, { correct: 3, extra: 0, total: 3 })
-    assert.deepEqual(reloaded.completedLessonIds, ['see-words'])
+    assert.deepEqual(reloaded.completedLessonIds, ['first-greeting', 'see-words'])
     assert.deepEqual(reloaded.passedExerciseIdsByLesson['see-words'], ['school-meaning', 'study-pinyin', 'water-order'])
-    assert.deepEqual(reloaded.passedExerciseIdsByLesson['first-greeting'], ['hello-type'])
-    assert.equal(reloaded.exerciseAttemptsCount, 5)
+    assert.deepEqual(reloaded.passedExerciseIdsByLesson['first-greeting'], ['hello-type', 'hello-listen', 'hello-meaning'])
+    assert.equal(reloaded.exerciseAttemptsCount, 7)
 
     const invalidResponse = await post('/api/progress/words', { wordId: 'not-seed-content', saved: true })
     assert.equal(invalidResponse.status, 400)

@@ -8,3 +8,4 @@ dist-test/
 *.tsbuildinfo
 .env
 .DS_Store
+/HSK[1-6]-20*/

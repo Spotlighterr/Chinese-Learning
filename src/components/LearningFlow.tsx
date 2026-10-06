@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
 import { progressApi, type LearningProfile, type Progress } from '../api/progress'
-import { sentences, words, type Locale } from '../data/curriculum'
+import { sentenceHanzi, sentences, words, type Locale } from '../data/curriculum'
 import { lessons } from '../data/lessons'
 import { courseUnits, recommendedLessonId } from '../data/course'
 import { lt } from '../learning-i18n'
+import { speakChinese } from '../speech'
 
 type View = 'today' | 'review' | 'profile'
 type Props = { locale: Locale; progress: Progress; onProgress: (value: Progress) => void; onLocale: (value: Locale) => void; onOpenSentence: (id: string) => void }
@@ -25,6 +26,7 @@ export function LearningFlow({ locale, progress, onProgress, onLocale, onOpenSen
   const [choice, setChoice] = useState<number | null>(null)
   const [order, setOrder] = useState<string[]>([])
   const [typed, setTyped] = useState('')
+  const [listeningTranscript, setListeningTranscript] = useState(false)
   const [feedback, setFeedback] = useState<boolean | null>(null)
   const [due, setDue] = useState<string[]>([])
   const [revealed, setRevealed] = useState(false)
@@ -32,13 +34,14 @@ export function LearningFlow({ locale, progress, onProgress, onLocale, onOpenSen
   const [error, setError] = useState('')
   const lesson = lessons[lessonIndex]
   const exercise = lesson.exercises[exerciseIndex]
+  const lessonSentence = sentences.find((item) => item.id === lesson.sentenceId)!
   const reviewWord = words[due[0]]
   const recommendedId = recommendedLessonId(progress.completedLessonIds)
 
   function selectLesson(index: number) {
     setLessonIndex(index)
     setExerciseIndex(firstUnpassedIndex(progress, index))
-    setChoice(null); setOrder([]); setTyped(''); setFeedback(null)
+    setChoice(null); setOrder([]); setTyped(''); setListeningTranscript(false); setFeedback(null)
   }
 
   useEffect(() => {
@@ -61,10 +64,10 @@ export function LearningFlow({ locale, progress, onProgress, onLocale, onOpenSen
   }
 
   async function checkExercise() {
-    if (exercise.kind === 'choice' && choice === null) return
+    if ((exercise.kind === 'choice' || exercise.kind === 'listen-choice') && choice === null) return
     if (exercise.kind === 'order' && order.length !== exercise.wordIds.length) return
     if (exercise.kind === 'input' && !typed.trim()) return
-    const answer = exercise.kind === 'choice' ? choice! : exercise.kind === 'order' ? order : typed
+    const answer = exercise.kind === 'choice' || exercise.kind === 'listen-choice' ? choice! : exercise.kind === 'order' ? order : typed
     setBusy(true); setError('')
     try {
       const result = await progressApi.answerExercise(lesson.id, exercise.id, answer)
@@ -83,7 +86,7 @@ export function LearningFlow({ locale, progress, onProgress, onLocale, onOpenSen
   }
 
   function nextExercise() {
-    setChoice(null); setOrder([]); setTyped(''); setFeedback(null)
+    setChoice(null); setOrder([]); setTyped(''); setListeningTranscript(false); setFeedback(null)
     if (exerciseIndex + 1 < lesson.exercises.length) setExerciseIndex(exerciseIndex + 1)
     else if (lessonIndex + 1 < lessons.length) selectLesson(lessonIndex + 1)
     else selectLesson(0)
@@ -128,11 +131,12 @@ export function LearningFlow({ locale, progress, onProgress, onLocale, onOpenSen
       </div>)}</div>
       <button className="learning-text" onClick={() => onOpenSentence(lesson.sentenceId)}>{lt(locale, 'openDecoder')} →</button>
       <div className="exercise-box"><span className="eyebrow">{lt(locale, 'exercise')} {exerciseIndex + 1} / {lesson.exercises.length}</span><h3>{exercise.prompt[locale]}</h3>
-        {exercise.kind === 'choice' ? <div className="answer-options">{exercise.options.map((option, index) => <button key={index} className={choice === index ? 'active' : ''} aria-pressed={choice === index} onClick={() => { setChoice(index); setFeedback(null) }}>{option[locale]}</button>)}</div>
+        {exercise.kind === 'listen-choice' && <div className="listening-controls"><button className="learning-primary" onClick={() => { if (!speakChinese(sentenceHanzi(lessonSentence))) setListeningTranscript(true) }}>🔊 {lt(locale, 'playSentence')}</button><button className="learning-text" onClick={() => setListeningTranscript(true)}>{lt(locale, 'showListeningText')}</button>{listeningTranscript && <strong lang="zh-Hans">{sentenceHanzi(lessonSentence)}</strong>}</div>}
+        {exercise.kind === 'choice' || exercise.kind === 'listen-choice' ? <div className="answer-options">{exercise.options.map((option, index) => <button key={index} className={choice === index ? 'active' : ''} aria-pressed={choice === index} onClick={() => { setChoice(index); setFeedback(null) }}>{option[locale]}</button>)}</div>
           : exercise.kind === 'order' ? <><p>{lt(locale, 'orderHint')}</p><div className="order-answer" lang="zh-Hans">{order.map((id, index) => <span key={`${id}-${index}`}>{words[id].hanzi}</span>)}</div><div className="answer-options" lang="zh-Hans">{exercise.wordIds.map((id) => <button key={id} disabled={order.includes(id)} onClick={() => { setOrder([...order, id]); setFeedback(null) }}>{words[id].hanzi}</button>)}</div><button className="learning-text" onClick={() => { setOrder([]); setFeedback(null) }}>{lt(locale, 'clear')}</button></>
           : <label className="typing-answer">{lt(locale, 'typingHint')}<input lang="zh-Hans" autoComplete="off" maxLength={80} value={typed} onChange={(event) => { setTyped(event.target.value); setFeedback(null) }} /></label>}
         {feedback !== null && <div className={feedback ? 'exercise-feedback correct' : 'exercise-feedback'} role="status"><strong>{lt(locale, feedback ? 'correct' : 'incorrect')}</strong><p>{exercise.explanation[locale]}</p></div>}
-        <div className="exercise-actions"><button className="learning-primary" disabled={busy || (exercise.kind === 'choice' ? choice === null : exercise.kind === 'order' ? order.length !== exercise.wordIds.length : !typed.trim())} onClick={checkExercise}>{lt(locale, 'submit')}</button>{feedback && <button onClick={nextExercise}>{lt(locale, 'continue')} →</button>}</div>
+        <div className="exercise-actions"><button className="learning-primary" disabled={busy || (exercise.kind === 'choice' || exercise.kind === 'listen-choice' ? choice === null : exercise.kind === 'order' ? order.length !== exercise.wordIds.length : !typed.trim())} onClick={checkExercise}>{lt(locale, 'submit')}</button>{feedback && <button onClick={nextExercise}>{lt(locale, 'continue')} →</button>}</div>
       </div>
     </div>}
     {view === 'review' && <div className="learning-panel"><h2>{lt(locale, 'review')}</h2>{reviewWord ? <div className="review-card"><strong lang="zh-Hans">{reviewWord.hanzi}</strong>{revealed ? <><p>{reviewWord.pinyin}</p><p>{reviewWord.meaning[locale]}</p><div className="exercise-actions"><button disabled={busy} onClick={() => rate('again')}>{lt(locale, 'again')}</button><button className="learning-primary" disabled={busy} onClick={() => rate('good')}>{lt(locale, 'good')}</button></div></> : <button className="learning-primary" onClick={() => setRevealed(true)}>{lt(locale, 'reveal')}</button>}</div> : <p>{lt(locale, 'noReview')}</p>}</div>}

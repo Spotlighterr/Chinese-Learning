@@ -76,6 +76,8 @@ h1 { margin: 17px 0 10px; font-size: clamp(40px, 4.2vw, 69px); line-height: 1.03
 .lesson-choices button small { display: block; color: #a04432; margin-top: 4px; }
 .typing-answer { display: grid; gap: 9px; max-width: 440px; color: #58675e; font-size: 12px; }
 .typing-answer input { width: 100%; min-height: 46px; border: 1px solid #cbd2c8; background: #fff; padding: 8px 12px; font-size: 21px; color: #263d2e; }
+.listening-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-bottom: 15px; }
+.listening-controls strong { font-size: 23px; color: #263d2e; }
 .lesson-choices button, .answer-options button, .exercise-actions > button:not(.learning-primary) { border: 1px solid #cbd2c8; background: #fff; padding: 10px 13px; color: #34473a; font-size: 12px; }
 .lesson-choices button.active, .answer-options button.active { border-color: #213d32; background: #e8eee7; }
 .exercise-box { max-width: 800px; border-top: 1px solid #e4e7df; padding-top: 21px; }

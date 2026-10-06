@@ -113,11 +113,11 @@ export default function App() {
 
       {apiError && <div className="api-banner" role="alert"><span>{t(locale, 'apiError')}</span><button onClick={() => loadInitialProgress().then((value) => { setProgress(value); setApiError(false) }).catch(() => setApiError(true))}>{t(locale, 'retry')}</button></div>}
 
-      {progress && <LearningFlow locale={locale} progress={progress} onProgress={setProgress} onLocale={setLocale} />}
+      {progress && <LearningFlow locale={locale} progress={progress} onProgress={setProgress} onLocale={setLocale} onOpenSentence={(id) => { const index = sentences.findIndex((item) => item.id === id); if (index >= 0) { chooseSentence(index); document.querySelector('.decoder-card')?.scrollIntoView({ behavior: 'smooth' }) } }} />}
 
       <div className="workspace-grid">
         <nav className="lesson-sidebar" aria-label={t(locale, 'lessonList')}>
-          <div className="sidebar-heading"><span className="eyebrow">{t(locale, 'lessonList')}</span><span>01 — 03</span></div>
+          <div className="sidebar-heading"><span className="eyebrow">{t(locale, 'lessonList')}</span><span>01 — {String(sentences.length).padStart(2, '0')}</span></div>
           <div className="sentence-list">
             {sentences.map((item, index) => <button key={item.id} className={index === sentenceIndex ? 'sentence-link active' : 'sentence-link'} onClick={() => chooseSentence(index)} aria-current={index === sentenceIndex ? 'page' : undefined}>
               <span className="sentence-link-number">0{index + 1}</span>

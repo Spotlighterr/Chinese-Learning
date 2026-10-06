@@ -67,6 +67,15 @@ h1 { margin: 17px 0 10px; font-size: clamp(40px, 4.2vw, 69px); line-height: 1.03
 .learning-error { margin: 12px 29px 0; color: #a0392d; }
 .lesson-choices, .answer-options, .exercise-actions { display: flex; flex-wrap: wrap; gap: 9px; }
 .lesson-choices { margin: 16px 0 22px; }
+.course-path { display: grid; gap: 13px; margin: 16px 0 6px; }
+.course-unit { border: 1px solid #e2e7dd; padding: 13px 15px 0; background: #fafbf6; }
+.course-unit-heading h3 { margin: 0 0 3px; color: #263d2e; font-size: 14px; }
+.course-unit-heading p { margin: 0; }
+.course-unit .lesson-choices { margin: 11px 0 14px; }
+.lesson-choices button { display: inline-flex; align-items: center; justify-content: space-between; gap: 13px; text-align: left; }
+.lesson-choices button small { display: block; color: #a04432; margin-top: 4px; }
+.typing-answer { display: grid; gap: 9px; max-width: 440px; color: #58675e; font-size: 12px; }
+.typing-answer input { width: 100%; min-height: 46px; border: 1px solid #cbd2c8; background: #fff; padding: 8px 12px; font-size: 21px; color: #263d2e; }
 .lesson-choices button, .answer-options button, .exercise-actions > button:not(.learning-primary) { border: 1px solid #cbd2c8; background: #fff; padding: 10px 13px; color: #34473a; font-size: 12px; }
 .lesson-choices button.active, .answer-options button.active { border-color: #213d32; background: #e8eee7; }
 .exercise-box { max-width: 800px; border-top: 1px solid #e4e7df; padding-top: 21px; }

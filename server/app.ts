@@ -89,10 +89,14 @@ export function createApp(store: Store, serveClient = false) {
     if (exercise.kind === 'choice') {
       if (!Number.isInteger(answer) || answer < 0 || answer >= exercise.options.length) return res.status(400).json({ error: 'invalid_answer' })
       correct = answer === exercise.correctIndex
-    } else {
+    } else if (exercise.kind === 'order') {
       if (!Array.isArray(answer) || answer.length !== exercise.wordIds.length || new Set(answer).size !== answer.length ||
         answer.some((id) => typeof id !== 'string' || !exercise.wordIds.includes(id))) return res.status(400).json({ error: 'invalid_answer' })
       correct = answer.every((id, index) => id === exercise.correctOrder[index])
+    } else {
+      if (typeof answer !== 'string' || answer.length > 80 || !answer.trim()) return res.status(400).json({ error: 'invalid_answer' })
+      const normalize = (value: string) => value.normalize('NFC').replace(/[\s\p{P}]/gu, '')
+      correct = normalize(answer) === normalize(exercise.answer)
     }
     const id = sessionId(req, res, store)
     store.addExerciseAttempt(id, lessonId, exerciseId, correct, lesson.exercises.length)

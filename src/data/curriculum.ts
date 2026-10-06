@@ -84,6 +84,8 @@ export const characters: Record<string, Character> = {
       { component: '青', role: 'phonetic', note: { 'vi-VN': 'Gợi ý cách đọc gần qing.', 'en-US': 'Hints at a qing-like pronunciation.' } },
     ],
   },
+  好: { hanzi: '好', pinyin: 'hǎo', meaning: { 'vi-VN': 'tốt; khỏe (trong lời chào)', 'en-US': 'good; well (in greetings)' } },
+  是: { hanzi: '是', pinyin: 'shì', meaning: { 'vi-VN': 'là', 'en-US': 'to be' } },
 }
 
 export const components: Record<string, { meaning: LocalizedText }> = {
@@ -129,9 +131,29 @@ export const words: Record<string, Word> = {
   qingwen: { id: 'qingwen', hanzi: '请问', pinyin: 'qǐngwèn', meaning: { 'vi-VN': 'xin hỏi', 'en-US': 'excuse me; may I ask' } },
   qingchu: { id: 'qingchu', hanzi: '清楚', pinyin: 'qīngchu', meaning: { 'vi-VN': 'rõ ràng', 'en-US': 'clear' } },
   xinqing: { id: 'xinqing', hanzi: '心情', pinyin: 'xīnqíng', meaning: { 'vi-VN': 'tâm trạng', 'en-US': 'mood' } },
+  hao: { id: 'hao', hanzi: '好', pinyin: 'hǎo', meaning: { 'vi-VN': 'tốt; khỏe', 'en-US': 'good; well' } },
+  shi: { id: 'shi', hanzi: '是', pinyin: 'shì', meaning: { 'vi-VN': 'là', 'en-US': 'to be' } },
 }
 
 export const sentences: Sentence[] = [
+  {
+    id: 'hello', tokens: ['ni', 'hao'], focusWordId: 'ni',
+    translation: { 'vi-VN': 'Xin chào.', 'en-US': 'Hello.' },
+    insight: { 'vi-VN': '你好 là lời chào quen thuộc. Trong lời nói tự nhiên, âm của 你 có thể đổi thanh do đứng trước một âm thanh 3 khác; Pinyin cơ bản vẫn viết nǐ hǎo.', 'en-US': '你好 is a common greeting. In natural speech, the tone of 你 may change before another third tone; its underlying Pinyin remains nǐ hǎo.' },
+    focus: { 'vi-VN': 'Nghe hai âm tiết và nhận ra lời chào.', 'en-US': 'Hear two syllables and recognize a greeting.' },
+  },
+  {
+    id: 'identity', tokens: ['wo', 'shi', 'xuesheng'], focusWordId: 'xuesheng',
+    translation: { 'vi-VN': 'Tôi là học sinh hoặc sinh viên.', 'en-US': 'I am a student.' },
+    insight: { 'vi-VN': '我是学生 gồm chủ ngữ 我, từ nối 是 và danh từ 学生. 学生 là một từ hai chữ, không nên tách thành hai nghĩa rời.', 'en-US': '我是学生 has the subject 我, linking word 是 and noun 学生. 学生 is one two-character word.' },
+    focus: { 'vi-VN': 'Nhận ra mẫu “tôi là…” và một từ hai chữ.', 'en-US': 'Recognize “I am…” and a two-character word.' },
+  },
+  {
+    id: 'study', tokens: ['wo', 'xuexi', 'zhongwen'], focusWordId: 'xuexi',
+    translation: { 'vi-VN': 'Tôi học tiếng Trung.', 'en-US': 'I study Chinese.' },
+    insight: { 'vi-VN': '我 / 学习 / 中文 gồm người làm, hành động và nội dung học. 学习 là một từ, 中文 là một từ.', 'en-US': '我 / 学习 / 中文 shows the learner, the action and the subject. 学习 and 中文 are each one word.' },
+    focus: { 'vi-VN': 'Đọc câu theo mẫu người làm – hành động – nội dung.', 'en-US': 'Read the subject – action – object pattern.' },
+  },
   {
     id: 'school',
     tokens: ['wo', 'jintian', 'xiawu', 'xiang', 'qu', 'xuexiao', 'xuexi', 'zhongwen'],

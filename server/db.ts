@@ -19,6 +19,7 @@ export type Progress = {
   bestBySentence: Record<string, { correct: number; extra: number; total: number }>
   profile: LearningProfile | null
   completedLessonIds: string[]
+  passedExerciseIdsByLesson: Record<string, string[]>
   exerciseAttemptsCount: number
   dueReviewCount: number
 }
@@ -112,9 +113,15 @@ export function createStore(path: string) {
       }
       const completedLessonIds = db.prepare('SELECT lesson_id FROM completed_lessons WHERE session_id = ?').all(sessionId)
         .map((row) => String(row.lesson_id))
+      const passedExerciseIdsByLesson: Progress['passedExerciseIdsByLesson'] = {}
+      const passedRows = db.prepare('SELECT DISTINCT lesson_id, exercise_id FROM exercise_attempts WHERE session_id = ? AND correct = 1').all(sessionId)
+      for (const row of passedRows) {
+        const lessonId = String(row.lesson_id)
+        ;(passedExerciseIdsByLesson[lessonId] ??= []).push(String(row.exercise_id))
+      }
       const exerciseAttemptsCount = Number(db.prepare('SELECT COUNT(*) AS count FROM exercise_attempts WHERE session_id = ?').get(sessionId)?.count ?? 0)
       const dueReviewCount = Number(db.prepare('SELECT COUNT(*) AS count FROM review_items WHERE session_id = ? AND due_at <= ?').get(sessionId, Date.now())?.count ?? 0)
-      return { completedSentenceIds, savedWordIds, attemptsCount: attemptRows.length, bestBySentence, profile: this.profile(sessionId), completedLessonIds, exerciseAttemptsCount, dueReviewCount }
+      return { completedSentenceIds, savedWordIds, attemptsCount: attemptRows.length, bestBySentence, profile: this.profile(sessionId), completedLessonIds, passedExerciseIdsByLesson, exerciseAttemptsCount, dueReviewCount }
     },
     profile(sessionId: string): LearningProfile | null {
       const row = db.prepare('SELECT level, target_hsk, target_date, daily_minutes, handwriting, explanation_locale FROM learning_profiles WHERE session_id = ?').get(sessionId)

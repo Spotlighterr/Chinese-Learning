@@ -20,7 +20,13 @@ export type OrderExercise = BaseExercise & {
   correctOrder: string[]
 }
 
-export type Exercise = ChoiceExercise | OrderExercise
+export type InputExercise = BaseExercise & {
+  kind: 'input'
+  skill: 'hanzi-typing'
+  answer: string
+}
+
+export type Exercise = ChoiceExercise | OrderExercise | InputExercise
 
 export type Lesson = {
   id: string
@@ -31,6 +37,82 @@ export type Lesson = {
 }
 
 export const lessons: Lesson[] = [
+  {
+    id: 'first-greeting',
+    title: { 'vi-VN': 'Chào bằng tiếng Trung', 'en-US': 'Say hello in Chinese' },
+    summary: { 'vi-VN': 'Nghe 你好, nhìn từng âm tiết và gõ lại bằng bộ gõ Pinyin.', 'en-US': 'Hear 你好, notice each syllable and type it with a Pinyin IME.' },
+    sentenceId: 'hello',
+    exercises: [
+      {
+        id: 'hello-meaning', kind: 'choice', skill: 'meaning',
+        prompt: { 'vi-VN': '你好 dùng để làm gì?', 'en-US': 'What is 你好 used for?' },
+        options: [
+          { 'vi-VN': 'chào hỏi', 'en-US': 'greeting' },
+          { 'vi-VN': 'cảm ơn', 'en-US': 'thanking' },
+          { 'vi-VN': 'xin lỗi', 'en-US': 'apologizing' },
+        ],
+        correctIndex: 0,
+        explanation: { 'vi-VN': '你好 / nǐ hǎo là một lời chào thông dụng. Hai âm tiết đều có thanh 3 trên Pinyin cơ bản.', 'en-US': '你好 / nǐ hǎo is a common greeting. Both syllables have third tone in their underlying Pinyin.' },
+      },
+      {
+        id: 'hello-type', kind: 'input', skill: 'hanzi-typing',
+        prompt: { 'vi-VN': 'Dùng bộ gõ Pinyin để gõ lời chào “xin chào” bằng chữ Hán.', 'en-US': 'Use a Pinyin IME to type “hello” in Hanzi.' },
+        answer: '你好',
+        explanation: { 'vi-VN': 'Gõ ni hao rồi chọn 你好. Bộ gõ giúp luyện nhận diện chữ; không cần viết tay.', 'en-US': 'Type ni hao and select 你好. IME typing builds character recognition without requiring handwriting.' },
+      },
+    ],
+  },
+  {
+    id: 'introduce-self',
+    title: { 'vi-VN': 'Giới thiệu bản thân', 'en-US': 'Introduce yourself' },
+    summary: { 'vi-VN': 'Dùng 我是… để nói mình là ai; nhận ra 学生 là một từ.', 'en-US': 'Use 我是… to say who you are; recognize 学生 as one word.' },
+    sentenceId: 'identity',
+    exercises: [
+      {
+        id: 'student-meaning', kind: 'choice', skill: 'meaning',
+        prompt: { 'vi-VN': 'Trong câu 我是学生, 学生 nghĩa là gì?', 'en-US': 'In 我是学生, what does 学生 mean?' },
+        options: [
+          { 'vi-VN': 'học sinh; sinh viên', 'en-US': 'student' },
+          { 'vi-VN': 'trường học', 'en-US': 'school' },
+          { 'vi-VN': 'học tập', 'en-US': 'study' },
+        ],
+        correctIndex: 0,
+        explanation: { 'vi-VN': '学生 / xuéshēng là người học; 学校 / xuéxiào là trường học.', 'en-US': '学生 / xuéshēng is a student; 学校 / xuéxiào is a school.' },
+      },
+      {
+        id: 'identity-order', kind: 'order', skill: 'sentence-order',
+        prompt: { 'vi-VN': 'Sắp xếp thành câu “Tôi là học sinh/sinh viên”.', 'en-US': 'Arrange “I am a student.”' },
+        wordIds: ['xuesheng', 'wo', 'shi'], correctOrder: ['wo', 'shi', 'xuesheng'],
+        explanation: { 'vi-VN': 'Mẫu cơ bản: 我 / 是 / 学生. Không thêm 是 trước động từ học trong câu 我学习中文.', 'en-US': 'Basic pattern: 我 / 是 / 学生. Do not put 是 before the verb 学习 in 我学习中文.' },
+      },
+      {
+        id: 'identity-type', kind: 'input', skill: 'hanzi-typing',
+        prompt: { 'vi-VN': 'Gõ “Tôi là học sinh/sinh viên” bằng chữ Hán.', 'en-US': 'Type “I am a student” in Hanzi.' },
+        answer: '我是学生',
+        explanation: { 'vi-VN': '我是学生 gồm 我 + 是 + 学生. Có thể gõ wo shi xue sheng bằng bộ gõ Pinyin.', 'en-US': '我是学生 is 我 + 是 + 学生. You can enter wo shi xue sheng with a Pinyin IME.' },
+      },
+    ],
+  },
+  {
+    id: 'study-chinese',
+    title: { 'vi-VN': 'Nói về việc học', 'en-US': 'Talk about studying' },
+    summary: { 'vi-VN': 'Đọc và tự tạo câu 我学习中文 theo trật tự người làm – hành động – nội dung.', 'en-US': 'Read and build 我学习中文 with subject – action – object order.' },
+    sentenceId: 'study',
+    exercises: [
+      {
+        id: 'study-order', kind: 'order', skill: 'sentence-order',
+        prompt: { 'vi-VN': 'Sắp xếp thành câu “Tôi học tiếng Trung”.', 'en-US': 'Arrange “I study Chinese.”' },
+        wordIds: ['zhongwen', 'wo', 'xuexi'], correctOrder: ['wo', 'xuexi', 'zhongwen'],
+        explanation: { 'vi-VN': '我 / 学习 / 中文. 是 dùng để nối với danh từ như 学生, không cần trong câu này.', 'en-US': '我 / 学习 / 中文. 是 links to a noun such as 学生; it is not needed here.' },
+      },
+      {
+        id: 'study-type', kind: 'input', skill: 'hanzi-typing',
+        prompt: { 'vi-VN': 'Gõ “Tôi học tiếng Trung” bằng chữ Hán.', 'en-US': 'Type “I study Chinese” in Hanzi.' },
+        answer: '我学习中文',
+        explanation: { 'vi-VN': 'Hãy nhận ra 学习 và 中文 là hai từ trước khi gõ cả câu.', 'en-US': 'Recognize 学习 and 中文 as two words before typing the sentence.' },
+      },
+    ],
+  },
   {
     id: 'see-words',
     title: { 'vi-VN': 'Nhìn ra từng từ', 'en-US': 'See the words' },

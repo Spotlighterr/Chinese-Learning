@@ -14,6 +14,7 @@ export type Progress = {
   bestBySentence: Record<string, { correct: number; extra: number; total: number }>
   profile: LearningProfile | null
   completedLessonIds: string[]
+  passedExerciseIdsByLesson: Record<string, string[]>
   exerciseAttemptsCount: number
   dueReviewCount: number
 }
@@ -41,7 +42,7 @@ async function request<T>(url: string, method: 'GET' | 'POST' = 'GET', body?: ob
 export const progressApi = {
   get: () => request<Progress>('/api/progress'),
   saveProfile: (profile: LearningProfile) => request<Progress>('/api/profile', 'POST', profile),
-  answerExercise: (lessonId: string, exerciseId: string, answer: number | string[]) =>
+  answerExercise: (lessonId: string, exerciseId: string, answer: number | string[] | string) =>
     request<{ correct: boolean; progress: Progress }>('/api/exercises', 'POST', { lessonId, exerciseId, answer }),
   dueReviews: () => request<{ wordIds: string[] }>('/api/reviews/due'),
   rateReview: (wordId: string, rating: 'again' | 'good') =>

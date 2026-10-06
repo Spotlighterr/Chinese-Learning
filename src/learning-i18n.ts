@@ -9,5 +9,12 @@ const copy = {
   },
 } as const
 
-export type LearningKey = keyof typeof copy['vi-VN']
-export function lt(locale: Locale, key: LearningKey): string { return copy[locale][key] }
+const courseCopy = {
+  'vi-VN': { recommended: 'Bài tiếp theo', openDecoder: 'Mở câu trong bộ phân tích', typingHint: 'Gõ chữ Hán bằng bộ gõ Pinyin. Có thể bỏ dấu câu.' },
+  'en-US': { recommended: 'Up next', openDecoder: 'Open in Sentence Decoder', typingHint: 'Type Hanzi with a Pinyin IME. Punctuation is optional.' },
+} as const
+
+export type LearningKey = keyof typeof copy['vi-VN'] | keyof typeof courseCopy['vi-VN']
+export function lt(locale: Locale, key: LearningKey): string {
+  return key in courseCopy[locale] ? courseCopy[locale][key as keyof typeof courseCopy['vi-VN']] : copy[locale][key as keyof typeof copy['vi-VN']]
+}

@@ -1,5 +1,12 @@
 # Trạng thái công việc — tạm dừng ngày 2026-10-01
 
+## Tiếp tục xây khóa học ngày 2026-10-07
+
+- Nhánh `feature/course-foundation` bổ sung 3 bài đầu về chào hỏi, giới thiệu và việc học; tổng cộng hiện có 2 cụm/6 bài/6 câu/14 câu hỏi. Có câu hỏi gõ chữ Hán qua bộ gõ Pinyin và chấm trên server.
+- API tiến độ trả về các mã câu hỏi từng trả lời đúng; giao diện chọn bài còn thiếu và tiếp tục từ câu chưa xong sau khi tải lại. Lộ trình bài học được nhóm theo cụm và liên kết sang Bộ phân tích câu.
+- Kiểm tra toàn vẹn dữ liệu, API chấm gõ chữ Hán, `typecheck`, `test`, `build` đều qua. Chrome với backend thật đã xác nhận hồ sơ, trắc nghiệm, gõ Hán tự, tiếp tục bài sau tải lại; viewport 390px không tràn ngang.
+- Xem `docs/COURSE_BUILD.md` để biết thứ tự mở rộng và tiêu chí gọi là khóa học hoàn chỉnh. Chưa phủ nội dung HSK 1–6; chưa chấm chuẩn phát âm/thanh điệu. Nhánh này chưa được đưa lên `main` hoặc server.
+
 ## CI/CD chuẩn bị ngày 2026-10-07
 
 - Đã viết workflow GitHub Actions kiểm tra push/PR và chỉ đánh dấu commit `main` qua CI lên `deploy/production`.

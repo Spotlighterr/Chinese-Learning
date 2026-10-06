@@ -1,0 +1,44 @@
+name: Chinese Decoder CI and deployment
+
+on:
+  push:
+    branches:
+      - main
+      - wip/mvp-phase-2
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+
+  mark-for-deployment:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: verify
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    concurrency:
+      group: chinese-decoder-production
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - name: Publish verified commit for Debian
+        run: git push origin "${GITHUB_SHA}:refs/heads/deploy/production"

@@ -1,5 +1,12 @@
 # Trạng thái công việc — tạm dừng ngày 2026-10-01
 
+## CI/CD chuẩn bị ngày 2026-10-07
+
+- Đã viết workflow GitHub Actions kiểm tra push/PR và chỉ đánh dấu commit `main` qua CI lên `deploy/production`.
+- Đã viết timer Debian để kéo nhánh đã kiểm tra, fast-forward checkout, build Compose và xác nhận health trước khi ghi nhận SHA đã triển khai.
+- Đã chuẩn bị Tailscale Serve HTTPS cổng `8443` cho luyện nói; route HTTPS `443` hiện có của dịch vụ khác phải được giữ nguyên. Xem `deploy/README.md`.
+- Chưa push các commit mới, chưa merge `main`, chưa cài timer hoặc bật route HTTPS trên server. Bộ duyệt tự động yêu cầu người dùng xác nhận rõ kho GitHub đích trước khi gửi mã nguồn ra ngoài.
+
 ## Tiếp tục ngày 2026-10-06
 
 - Đã `git pull --ff-only` trên `wip/mvp-phase-2`; remote không có commit mới.

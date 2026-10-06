@@ -35,6 +35,6 @@ Triển khai bằng Docker trên Debian: xem [deploy/README.md](deploy/README.md
 
 ## Giới hạn hiện tại
 
-Đây là lát cắt đầu tiên, chưa phải MVP hoàn chỉnh: chưa có tài khoản, đồng bộ nhiều thiết bị, âm thanh, SRS, lộ trình 180 ngày hay kho nội dung mở rộng. Phiên ẩn danh gắn với cookie của trình duyệt. Nội dung tiếng Trung mẫu cần được biên tập ngôn ngữ trước khi mở rộng quy mô. Không triển khai công khai như hệ thống nhiều người dùng cho đến khi có xác thực và cấu hình bảo mật phù hợp.
+Đây vẫn chưa phải MVP hoàn chỉnh: chưa có tài khoản, đồng bộ nhiều thiết bị, lộ trình 180 ngày hay kho nội dung mở rộng. Nhánh phát triển có ba bài học, ôn tập cơ bản và luyện nói thử nghiệm. Điểm giọng nói chỉ đo mức khớp nội dung máy nhận dạng được, chưa chấm chuẩn thanh điệu. Phiên ẩn danh gắn với cookie của trình duyệt. Nội dung tiếng Trung mẫu cần được biên tập ngôn ngữ trước khi mở rộng quy mô. Không triển khai công khai như hệ thống nhiều người dùng cho đến khi có xác thực và cấu hình bảo mật phù hợp.
 
 Đọc [AGENTS.md](AGENTS.md) và các tài liệu trong [docs](docs) trước khi phát triển tiếp.

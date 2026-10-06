@@ -1,0 +1,12 @@
+[Unit]
+Description=Check GitHub for verified Chinese Decoder updates
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=3min
+RandomizedDelaySec=20s
+Persistent=true
+Unit=chinese-decoder-deploy.service
+
+[Install]
+WantedBy=timers.target

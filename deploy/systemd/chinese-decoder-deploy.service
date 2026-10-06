@@ -1,0 +1,12 @@
+[Unit]
+Description=Deploy verified Chinese Decoder commit
+Wants=network-online.target
+After=network-online.target docker.service tailscaled.service
+
+[Service]
+Type=oneshot
+User=spotlighter
+Group=spotlighter
+WorkingDirectory=/home/spotlighter/Chineseapp
+ExecStart=/usr/bin/bash /home/spotlighter/Chineseapp/deploy/update-from-github.sh
+TimeoutStartSec=20min

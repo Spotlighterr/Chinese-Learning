@@ -155,6 +155,24 @@ export const sentences: Sentence[] = [
     focus: { 'vi-VN': 'Đọc câu theo mẫu người làm – hành động – nội dung.', 'en-US': 'Read the subject – action – object pattern.' },
   },
   {
+    id: 'drink-water', tokens: ['wo', 'he', 'shui'], focusWordId: 'he',
+    translation: { 'vi-VN': 'Tôi uống nước.', 'en-US': 'I drink water.' },
+    insight: { 'vi-VN': '我 / 喝 / 水 là một câu ngắn theo thứ tự người làm – hành động – đối tượng. Hãy nhận ra 喝水 là hành động uống nước nhưng 喝 và 水 là hai từ.', 'en-US': '我 / 喝 / 水 follows subject – action – object order. 喝水 means drinking water here, but 喝 and 水 are separate words.' },
+    focus: { 'vi-VN': 'Tạo câu ngắn với từ đã gặp trong câu 请你喝水.', 'en-US': 'Build a short sentence from words in 请你喝水.' },
+  },
+  {
+    id: 'go-school', tokens: ['wo', 'jintian', 'qu', 'xuexiao'], focusWordId: 'jintian',
+    translation: { 'vi-VN': 'Hôm nay tôi đến trường.', 'en-US': 'I go to school today.' },
+    insight: { 'vi-VN': 'Trong 我今天去学校, 今天 đứng sau chủ ngữ 我 và trước động từ 去. 去学校 là đi đến trường; 学校 là một từ hai chữ.', 'en-US': 'In 我今天去学校, 今天 comes after 我 and before the verb 去. 去学校 means going to school; 学校 is one two-character word.' },
+    focus: { 'vi-VN': 'Đặt thời gian trước hành động trong câu.', 'en-US': 'Place time before the action in a sentence.' },
+  },
+  {
+    id: 'want-study', tokens: ['wo', 'xiang', 'xuexi', 'zhongwen'], focusWordId: 'xiang',
+    translation: { 'vi-VN': 'Tôi muốn học tiếng Trung.', 'en-US': 'I want to study Chinese.' },
+    insight: { 'vi-VN': '想 đứng trước 学习 để diễn tả mong muốn làm việc đó. So với 我学习中文, câu này thêm một ý mới mà không cần đổi thứ tự các từ còn lại.', 'en-US': '想 comes before 学习 to express a wish to do it. Compared with 我学习中文, it adds one idea without changing the order of the remaining words.' },
+    focus: { 'vi-VN': 'Thêm 想 vào mẫu câu đã học để nói mong muốn.', 'en-US': 'Add 想 to a familiar pattern to express a wish.' },
+  },
+  {
     id: 'school',
     tokens: ['wo', 'jintian', 'xiawu', 'xiang', 'qu', 'xuexiao', 'xuexi', 'zhongwen'],
     focusWordId: 'xuexiao',

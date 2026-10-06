@@ -114,6 +114,77 @@ export const lessons: Lesson[] = [
     ],
   },
   {
+    id: 'drink-water',
+    title: { 'vi-VN': 'Tự nói một câu ngắn', 'en-US': 'Build a short sentence' },
+    summary: { 'vi-VN': 'Dùng 我, 喝 và 水 để nói một hành động thường ngày.', 'en-US': 'Use 我, 喝 and 水 for an everyday action.' },
+    sentenceId: 'drink-water',
+    exercises: [
+      {
+        id: 'drink-order', kind: 'order', skill: 'sentence-order',
+        prompt: { 'vi-VN': 'Sắp xếp “Tôi uống nước”.', 'en-US': 'Arrange “I drink water.”' },
+        wordIds: ['shui', 'wo', 'he'], correctOrder: ['wo', 'he', 'shui'],
+        explanation: { 'vi-VN': 'Thứ tự là 我 / 喝 / 水: người làm, hành động, đối tượng.', 'en-US': 'The order is 我 / 喝 / 水: subject, action, object.' },
+      },
+      {
+        id: 'drink-type', kind: 'input', skill: 'hanzi-typing',
+        prompt: { 'vi-VN': 'Gõ “Tôi uống nước” bằng chữ Hán.', 'en-US': 'Type “I drink water” in Hanzi.' },
+        answer: '我喝水',
+        explanation: { 'vi-VN': 'Gõ wo he shui rồi chọn đúng chữ 我喝水.', 'en-US': 'Enter wo he shui and choose 我喝水.' },
+      },
+    ],
+  },
+  {
+    id: 'go-school',
+    title: { 'vi-VN': 'Nói thời gian trước hành động', 'en-US': 'Put time before an action' },
+    summary: { 'vi-VN': 'Đặt 今天 vào câu 我去学校 để nói việc diễn ra hôm nay.', 'en-US': 'Add 今天 to 我去学校 to say when it happens.' },
+    sentenceId: 'go-school',
+    exercises: [
+      {
+        id: 'today-position', kind: 'choice', skill: 'meaning',
+        prompt: { 'vi-VN': 'Trong 我今天去学校, 今天 nói về điều gì?', 'en-US': 'What does 今天 tell us in 我今天去学校?' },
+        options: [
+          { 'vi-VN': 'thời gian: hôm nay', 'en-US': 'time: today' },
+          { 'vi-VN': 'địa điểm: trường học', 'en-US': 'place: school' },
+          { 'vi-VN': 'hành động: đi', 'en-US': 'action: go' },
+        ],
+        correctIndex: 0,
+        explanation: { 'vi-VN': '今天 / jīntiān nghĩa là hôm nay; nó đứng trước 去 trong câu này.', 'en-US': '今天 / jīntiān means today; here it comes before 去.' },
+      },
+      {
+        id: 'go-school-order', kind: 'order', skill: 'sentence-order',
+        prompt: { 'vi-VN': 'Sắp xếp “Hôm nay tôi đến trường”.', 'en-US': 'Arrange “I go to school today.”' },
+        wordIds: ['xuexiao', 'qu', 'jintian', 'wo'], correctOrder: ['wo', 'jintian', 'qu', 'xuexiao'],
+        explanation: { 'vi-VN': '我 / 今天 / 去 / 学校. Thời gian đứng trước động từ 去.', 'en-US': '我 / 今天 / 去 / 学校. Time comes before the verb 去.' },
+      },
+      {
+        id: 'go-school-type', kind: 'input', skill: 'hanzi-typing',
+        prompt: { 'vi-VN': 'Gõ “Hôm nay tôi đến trường” bằng chữ Hán.', 'en-US': 'Type “I go to school today” in Hanzi.' },
+        answer: '我今天去学校',
+        explanation: { 'vi-VN': 'Nhớ gõ 学校 liền nhau vì đó là một từ.', 'en-US': 'Keep 学校 together as one word.' },
+      },
+    ],
+  },
+  {
+    id: 'want-study',
+    title: { 'vi-VN': 'Nói điều mình muốn làm', 'en-US': 'Say what you want to do' },
+    summary: { 'vi-VN': 'Thêm 想 trước 学习 để chuyển một hành động thành mong muốn.', 'en-US': 'Put 想 before 学习 to express a wish.' },
+    sentenceId: 'want-study',
+    exercises: [
+      {
+        id: 'want-order', kind: 'order', skill: 'sentence-order',
+        prompt: { 'vi-VN': 'Sắp xếp “Tôi muốn học tiếng Trung”.', 'en-US': 'Arrange “I want to study Chinese.”' },
+        wordIds: ['zhongwen', 'xuexi', 'wo', 'xiang'], correctOrder: ['wo', 'xiang', 'xuexi', 'zhongwen'],
+        explanation: { 'vi-VN': '我 / 想 / 学习 / 中文. 想 nằm trước hành động muốn thực hiện.', 'en-US': '我 / 想 / 学习 / 中文. 想 comes before the desired action.' },
+      },
+      {
+        id: 'want-type', kind: 'input', skill: 'hanzi-typing',
+        prompt: { 'vi-VN': 'Gõ “Tôi muốn học tiếng Trung” bằng chữ Hán.', 'en-US': 'Type “I want to study Chinese” in Hanzi.' },
+        answer: '我想学习中文',
+        explanation: { 'vi-VN': 'Dùng bộ gõ Pinyin để chọn đúng 我想学习中文.', 'en-US': 'Use a Pinyin IME to select 我想学习中文.' },
+      },
+    ],
+  },
+  {
     id: 'see-words',
     title: { 'vi-VN': 'Nhìn ra từng từ', 'en-US': 'See the words' },
     summary: { 'vi-VN': 'Một chữ có thể nằm trong nhiều từ. Đọc câu theo các đơn vị có nghĩa.', 'en-US': 'A character can belong to many words. Read in meaningful units.' },

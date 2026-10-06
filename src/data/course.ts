@@ -19,6 +19,12 @@ export const courseUnits: CourseUnit[] = [
     lessonIds: ['first-greeting', 'introduce-self', 'study-chinese'],
   },
   {
+    id: 'reuse-patterns', stage: 'foundation',
+    title: { 'vi-VN': 'Dùng lại mẫu câu', 'en-US': 'Reuse sentence patterns' },
+    summary: { 'vi-VN': 'Đổi người/vật, thêm thời gian và ý muốn để tạo câu mới.', 'en-US': 'Add time and intention to build new sentences from familiar words.' },
+    lessonIds: ['drink-water', 'go-school', 'want-study'],
+  },
+  {
     id: 'decode-sentences', stage: 'foundation',
     title: { 'vi-VN': 'Giải mã câu', 'en-US': 'Decode sentences' },
     summary: { 'vi-VN': 'Từ ghép, trật tự từ và manh mối gợi nghĩa/gợi âm.', 'en-US': 'Compound words, word order and meaning/sound clues.' },

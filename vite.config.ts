@@ -5,6 +5,6 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: { '/api': 'http://127.0.0.1:3001' },
-    watch: { ignored: ['**/.tmp/**', '**/.data/**'] },
+    watch: { ignored: ['**/.tmp/**', '**/.data/**', '**/HSK[1-6]-20*/**'] },
   },
 })

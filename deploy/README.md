@@ -16,7 +16,7 @@ Khi cần cập nhật thủ công trước lúc cài CI/CD, chạy `git pull --
 
 ## CI/CD
 
-Workflow `.github/workflows/ci-deploy.yml` chạy `npm ci`, typecheck, test và build cho push vào `main`/nhánh WIP và pull request vào `main`. Chỉ sau khi kiểm tra trên `main` thành công, workflow mới đẩy chính commit đó sang nhánh `deploy/production`. Không cần khóa SSH hoặc quyền truy cập tailnet trong GitHub Actions.
+Workflow `.github/workflows/ci-deploy.yml` chạy `npm ci`, audit, typecheck, test và build cho push vào `main`/nhánh WIP và pull request vào `main`. Chỉ sau khi kiểm tra trên `main` thành công, workflow mới đẩy chính commit đó sang nhánh `deploy/production`. Không cần khóa SSH hoặc quyền truy cập tailnet trong GitHub Actions.
 
 Trên Debian, timer `chinese-decoder-deploy.timer` kiểm tra nhánh `deploy/production` khoảng 3 phút một lần. Script `deploy/update-from-github.sh` từ chối checkout bẩn, yêu cầu commit đã kiểm tra thuộc lịch sử `main`, chỉ fast-forward checkout rồi chạy Docker Compose và kiểm tra `/api/health`. Nếu build/health thất bại, lần chạy sau sẽ thử lại cùng commit; dấu `.data/deployed-sha` chỉ cập nhật sau khi kiểm tra thành công.
 

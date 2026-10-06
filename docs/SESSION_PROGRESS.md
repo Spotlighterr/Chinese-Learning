@@ -5,7 +5,8 @@
 - Đã viết workflow GitHub Actions kiểm tra push/PR và chỉ đánh dấu commit `main` qua CI lên `deploy/production`.
 - Đã viết timer Debian để kéo nhánh đã kiểm tra, fast-forward checkout, build Compose và xác nhận health trước khi ghi nhận SHA đã triển khai.
 - Đã chuẩn bị Tailscale Serve HTTPS cổng `8443` cho luyện nói; route HTTPS `443` hiện có của dịch vụ khác phải được giữ nguyên. Xem `deploy/README.md`.
-- Chưa push các commit mới, chưa merge `main`, chưa cài timer hoặc bật route HTTPS trên server. Bộ duyệt tự động yêu cầu người dùng xác nhận rõ kho GitHub đích trước khi gửi mã nguồn ra ngoài.
+- Người dùng đã xác nhận kho GitHub và server. Đã push `main`, CI thành công, triển khai commit `4c61eb1`, bật timer và Serve HTTPS `:8443`; SQLite đã được sao lưu trước khi cập nhật.
+- Máy làm việc lúc kiểm tra chưa kết nối được tailnet, nên URL HTTPS được xác nhận từ chính Debian (HTTP/2 200 và `/api/health` trả `{"ok":true}`); cần kiểm tra lại từ thiết bị người học khi Tailscale hoạt động.
 
 ## Tiếp tục ngày 2026-10-06
 

@@ -14,4 +14,4 @@ Phòng phát âm và audio; luyện nghe/nói; lưu câu; trình đọc văn b�
 
 ## Trước khi triển khai công khai
 
-Thêm tài khoản/xác thực, migration dữ liệu, sao lưu, rà soát quyền riêng tư, chính sách cookie và HTTPS. Đánh giá việc giữ SQLite hay chuyển PostgreSQL theo số người dùng thực tế.
+Thêm tài khoản/xác thực, migration dữ liệu, sao lưu, rà soát quyền riêng tư, chính sách cookie và HTTPS. Phương án PostgreSQL làm nguồn dữ liệu học viên và Valkey cho giới hạn truy cập/cache tạm được ghi tại `docs/ACCOUNT_AND_STORAGE_DESIGN.md`; chưa triển khai.

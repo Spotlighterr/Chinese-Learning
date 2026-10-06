@@ -2,6 +2,8 @@
 
 ## Tiếp tục xây khóa học ngày 2026-10-07
 
+- Đã rà soát phương án tài khoản học viên/PostgreSQL/Valkey trong `docs/ACCOUNT_AND_STORAGE_DESIGN.md`. Đây là thiết kế đề xuất; chưa đổi SQLite, cookie hoặc Compose trên bản chạy.
+
 - Nhánh `feature/course-foundation` bổ sung các bài về chào hỏi, giới thiệu, dùng lại mẫu câu và giao tiếp hằng ngày; tổng cộng hiện có 4 cụm/12 bài/12 câu/30 câu hỏi. Có câu hỏi gõ chữ Hán qua bộ gõ Pinyin, bài nghe hiểu, và chấm trên server.
 - API tiến độ trả về các mã câu hỏi từng trả lời đúng; giao diện chọn bài còn thiếu và tiếp tục từ câu chưa xong sau khi tải lại. Lộ trình bài học được nhóm theo cụm và liên kết sang Bộ phân tích câu.
 - Kiểm tra toàn vẹn dữ liệu, API chấm gõ chữ Hán, `typecheck`, `test`, `build` đều qua. Chrome với backend thật đã xác nhận hồ sơ, trắc nghiệm, gõ Hán tự, tiếp tục bài sau tải lại; viewport 390px không tràn ngang.

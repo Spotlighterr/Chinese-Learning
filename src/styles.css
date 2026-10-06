@@ -42,6 +42,61 @@ h1 { margin: 17px 0 10px; font-size: clamp(40px, 4.2vw, 69px); line-height: 1.03
 .api-banner { margin-bottom: 18px; border: 1px solid #cf8a76; background: #fff5ef; color: #8a3629; padding: 10px 13px; display: flex; justify-content: space-between; align-items: center; gap: 12px; font-size: 13px; }
 .api-banner button { border: 0; background: transparent; color: inherit; font-weight: 700; text-decoration: underline; }
 
+.learning-flow { margin: 0 0 28px; border: 1px solid #d8dcd3; background: #fffefa; }
+.learning-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; padding: 16px 18px; background: #f0f2ea; }
+.learning-stats > div { display: grid; gap: 5px; min-width: 0; }
+.learning-stats span { color: #596a5f; font-size: 11px; }
+.learning-stats strong { color: #263d2e; font-size: 18px; }
+.learning-stats progress { width: 100%; height: 5px; accent-color: #578463; }
+.learning-stats .learning-stats-note { font-size: 10px; }
+.learning-nav { display: flex; flex-wrap: wrap; border-bottom: 1px solid #e3e5dd; }
+.learning-nav button { border: 0; border-right: 1px solid #e3e5dd; background: transparent; padding: 14px 18px; color: #526259; font-size: 12px; font-weight: 700; }
+.learning-nav button.active { background: #213d32; color: #fff; }
+.learning-panel { padding: 25px 29px 29px; }
+.learning-panel h2 { margin: 4px 0 9px; font-size: 23px; }
+.learning-panel p { color: #68736b; font-size: 13px; line-height: 1.6; }
+.learning-top { display: flex; justify-content: space-between; gap: 20px; }
+.learning-top strong { color: #48704f; white-space: nowrap; font-size: 12px; }
+.profile-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 15px; margin: 20px 0; }
+.profile-grid label { display: grid; gap: 7px; color: #4b5b50; font-size: 12px; font-weight: 700; }
+.profile-grid input, .profile-grid select { width: 100%; min-height: 39px; border: 1px solid #cbd2c8; background: #fff; padding: 8px; color: #203127; }
+.profile-grid .check-label { display: flex; align-items: center; gap: 9px; }
+.profile-grid .check-label input { width: auto; min-height: auto; }
+.learning-primary { border: 0; background: #af4835; color: #fff; padding: 11px 16px; font-size: 12px; font-weight: 700; }
+.learning-text { border: 0; background: transparent; color: #a04432; font-size: 12px; padding: 8px 0; }
+.learning-error { margin: 12px 29px 0; color: #a0392d; }
+.lesson-choices, .answer-options, .exercise-actions { display: flex; flex-wrap: wrap; gap: 9px; }
+.lesson-choices { margin: 16px 0 22px; }
+.lesson-choices button, .answer-options button, .exercise-actions > button:not(.learning-primary) { border: 1px solid #cbd2c8; background: #fff; padding: 10px 13px; color: #34473a; font-size: 12px; }
+.lesson-choices button.active, .answer-options button.active { border-color: #213d32; background: #e8eee7; }
+.exercise-box { max-width: 800px; border-top: 1px solid #e4e7df; padding-top: 21px; }
+.exercise-box h3 { margin: 10px 0 17px; font-size: 17px; line-height: 1.5; }
+.exercise-actions { margin-top: 18px; }
+.order-answer { display: flex; gap: 8px; min-height: 49px; align-items: center; margin-bottom: 12px; border-bottom: 1px solid #cbd2c8; font-size: 24px; }
+.exercise-feedback { margin-top: 16px; padding: 12px 15px; background: #fff4ed; color: #8c3e2e; }
+.exercise-feedback.correct { background: #eaf3e9; color: #2c6040; }
+.exercise-feedback p { margin: 6px 0 0; color: inherit; }
+.review-card { display: flex; flex-direction: column; align-items: start; gap: 10px; padding: 22px; border: 1px solid #d8dcd3; max-width: 400px; }
+.review-card strong { font-size: 46px; }
+.review-card p { margin: 0; }
+.speaking-card { margin-top: 18px; padding: 25px 29px; background: #fffefa; border: 1px solid #dadbd2; }
+.speaking-heading { display: flex; justify-content: space-between; align-items: start; gap: 14px; }
+.speaking-heading h3 { font-size: 30px; margin: 9px 0 4px; color: #263d2e; }
+.speaking-heading p { color: #68736b; font-size: 13px; margin: 0 0 16px; }
+.speaking-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.speaking-actions audio { max-width: 100%; height: 36px; }
+.speaking-note { color: #777c72; font-size: 12px; line-height: 1.5; }
+.waveform-wrap { margin-top: 19px; padding: 15px; background: #f4f5ef; border: 1px solid #e2e8de; }
+.waveform { display: block; width: 100%; height: 110px; margin: 8px 0; }
+.waveform rect { fill: #6f9876; }
+.waveform line { stroke: #a04432; stroke-width: 3; }
+.waveform-wrap small, .speaking-result small { display: block; color: #777c72; font-size: 11px; line-height: 1.5; }
+.speaking-result { display: grid; gap: 7px; margin-top: 16px; color: #34473a; font-size: 12px; }
+.speaking-result > strong { color: #a04432; font-size: 17px; }
+@media (max-width: 700px) { .profile-grid { grid-template-columns: 1fr 1fr; } .learning-top { flex-direction: column; } }
+@media (max-width: 480px) { .profile-grid { grid-template-columns: 1fr; } .learning-panel { padding: 20px; } }
+@media (max-width: 420px) { .learning-stats { gap: 8px; padding: 13px 10px; } .learning-stats span { font-size: 10px; } }
+
 .workspace-grid { display: grid; grid-template-columns: minmax(228px, .78fr) minmax(480px, 1.95fr) minmax(288px, 1fr); align-items: start; gap: 18px; }
 .lesson-sidebar { padding-top: 19px; padding-right: 7px; }
 .sidebar-heading { display: flex; justify-content: space-between; align-items: center; margin-bottom: 19px; }
@@ -174,8 +229,8 @@ h1 { margin: 17px 0 10px; font-size: clamp(40px, 4.2vw, 69px); line-height: 1.03
   .app-shell { padding: 0 22px; }
   .intro-section { align-items: start; flex-direction: column; gap: 24px; }
   .progress-summary { padding-left: 0; border-left: 0; }
-  .workspace-grid { grid-template-columns: 1fr; }
-  .lesson-sidebar { padding: 0; }
+  .workspace-grid { grid-template-columns: minmax(0, 1fr); }
+  .lesson-sidebar { padding: 0; min-width: 0; }
   .sentence-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 0; gap: 8px; }
   .sentence-link { height: 100%; border: 1px solid #d6d9d0; padding: 11px; }
   .sentence-link.active { border-left: 2px solid #ac4432; padding-left: 10px; }

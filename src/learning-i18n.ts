@@ -1,0 +1,13 @@
+import type { Locale } from './data/curriculum'
+
+const copy = {
+  'vi-VN': {
+    onboarding: 'Bắt đầu hành trình', intro: 'Chọn nhịp học phù hợp. Bạn có thể sửa mục tiêu sau.', level: 'Trình độ hiện tại', new: 'Mới bắt đầu', basic: 'Đã biết cơ bản', intermediate: 'Trung cấp', target: 'Mục tiêu HSK', date: 'Ngày mục tiêu', minutes: 'Phút học mỗi ngày', explanationLanguage: 'Ngôn ngữ giải thích', handwriting: 'Tôi muốn luyện viết tay', start: 'Lưu kế hoạch', today: 'Buổi học hôm nay', lesson: 'Bài học', completed: 'Đã hoàn thành', exercise: 'Câu hỏi', submit: 'Kiểm tra', correct: 'Đúng rồi', incorrect: 'Thử lại', continue: 'Tiếp tục', orderHint: 'Chọn các từ theo thứ tự để tạo câu.', clear: 'Xóa lựa chọn', review: 'Ôn tập đến hạn', noReview: 'Chưa có từ đến hạn. Lưu một từ trong bộ phân tích câu để bắt đầu ôn tập.', reveal: 'Hiện đáp án', again: 'Cần ôn lại', good: 'Đã nhớ', decoder: 'Bộ phân tích câu', editProfile: 'Sửa mục tiêu', goal: 'mục tiêu', lessonProgress: 'bài đã hoàn thành', reviewCount: 'từ đến hạn', sentencesProgress: 'Câu đã hiểu', exercisesProgress: 'Bài học đã xong', reviewProgress: 'Từ cần ôn', savedProgress: 'từ đã lưu', choose: 'Chọn một đáp án', saveError: 'Không lưu được. Hãy thử lại.', dateError: 'Ngày mục tiêu cần ở tương lai.',
+  },
+  'en-US': {
+    onboarding: 'Start your journey', intro: 'Choose a learning pace. You can edit this goal later.', level: 'Current level', new: 'New learner', basic: 'Basic knowledge', intermediate: 'Intermediate', target: 'HSK goal', date: 'Target date', minutes: 'Minutes per day', explanationLanguage: 'Explanation language', handwriting: 'I want to practice handwriting', start: 'Save plan', today: 'Today’s lesson', lesson: 'Lesson', completed: 'Completed', exercise: 'Question', submit: 'Check', correct: 'Correct', incorrect: 'Try again', continue: 'Continue', orderHint: 'Select words in order to build the sentence.', clear: 'Clear selection', review: 'Reviews due', noReview: 'No words are due. Save a word in the Sentence Decoder to begin reviewing.', reveal: 'Show answer', again: 'Review again', good: 'Remembered', decoder: 'Sentence Decoder', editProfile: 'Edit goal', goal: 'goal', lessonProgress: 'lessons completed', reviewCount: 'words due', sentencesProgress: 'Sentences understood', exercisesProgress: 'Lessons completed', reviewProgress: 'Words due', savedProgress: 'saved words', choose: 'Choose an answer', saveError: 'Could not save. Try again.', dateError: 'Target date must be in the future.',
+  },
+} as const
+
+export type LearningKey = keyof typeof copy['vi-VN']
+export function lt(locale: Locale, key: LearningKey): string { return copy[locale][key] }

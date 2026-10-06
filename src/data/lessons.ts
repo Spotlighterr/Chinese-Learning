@@ -100,4 +100,30 @@ export const lessons: Lesson[] = [
       },
     ],
   },
+  {
+    id: 'weather-clues',
+    title: { 'vi-VN': 'Đọc câu về thời tiết', 'en-US': 'Read a weather sentence' },
+    summary: { 'vi-VN': 'Trong 今天 / 天气 / 晴朗, nhận diện từ ghép trước khi nhìn từng chữ.', 'en-US': 'In 今天 / 天气 / 晴朗, find the words before inspecting individual characters.' },
+    sentenceId: 'weather',
+    exercises: [
+      {
+        id: 'weather-order', kind: 'order', skill: 'sentence-order',
+        prompt: { 'vi-VN': 'Sắp xếp các từ thành câu “Hôm nay thời tiết quang đãng”.', 'en-US': 'Put the words in order: “The weather is clear today.”' },
+        wordIds: ['qinglang', 'jintian', 'tianqi'],
+        correctOrder: ['jintian', 'tianqi', 'qinglang'],
+        explanation: { 'vi-VN': '今天 / 天气 / 晴朗 là ba từ. Chữ 天 nằm trong hai từ đầu nhưng vai trò của cả từ khác nhau.', 'en-US': '今天 / 天气 / 晴朗 are three words. 天 appears in the first two, but the words have different roles.' },
+      },
+      {
+        id: 'weather-meaning', kind: 'choice', skill: 'meaning',
+        prompt: { 'vi-VN': 'Trong câu 今天 天气 晴朗, 晴朗 có nghĩa là gì?', 'en-US': 'In 今天 天气 晴朗, what does 晴朗 mean?' },
+        options: [
+          { 'vi-VN': 'quang đãng', 'en-US': 'clear and bright' },
+          { 'vi-VN': 'hôm nay', 'en-US': 'today' },
+          { 'vi-VN': 'thời tiết', 'en-US': 'weather' },
+        ],
+        correctIndex: 0,
+        explanation: { 'vi-VN': '晴朗 / qínglǎng nghĩa là quang đãng. Trong 晴, 日 là manh mối về nghĩa, 青 là manh mối về âm.', 'en-US': '晴朗 / qínglǎng means clear and bright. In 晴, 日 hints at meaning and 青 hints at sound.' },
+      },
+    ],
+  },
 ]

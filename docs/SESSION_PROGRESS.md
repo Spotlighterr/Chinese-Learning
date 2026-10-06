@@ -1,5 +1,20 @@
 # Trạng thái công việc — tạm dừng ngày 2026-10-01
 
+## Tiếp tục ngày 2026-10-06
+
+- Đã `git pull --ff-only` trên `wip/mvp-phase-2`; remote không có commit mới.
+- Đã nối API hồ sơ, bài tập và ôn tập vào giao diện: onboarding chọn mục tiêu, buổi học theo hai bài dữ liệu, trả lời câu hỏi, hiển thị từ đến hạn và tự đánh giá ôn tập. Bộ Phân tích câu vẫn nằm trên cùng trang.
+- Đã mở rộng kiểm thử API cho hồ sơ, hoàn thành bài học, hàng ôn tập; `typecheck`, `test`, `build` đều qua.
+- Cần kiểm tra luồng trong trình duyệt với backend thật, đặc biệt trên màn hình hẹp và khi đổi ngôn ngữ. Chưa merge vào `main`, push hay triển khai Debian.
+- Mốc 2 chưa hoàn chỉnh: cần mở rộng nội dung và kiểm tra trải nghiệm người học ở nhiều thiết bị; bảng tiến độ hiện chỉ phản ánh các hoạt động đã lưu, chưa đánh giá năng lực toàn diện.
+
+### Cập nhật tiếp trong ngày
+
+- Đã thêm bài học thứ ba cho câu thời tiết và bảng tiến độ gọn (câu đã hiểu, bài hoàn thành, từ cần ôn).
+- Đã thêm luyện nói thử nghiệm: nghe mẫu tiếng Trung, ghi âm/nghe lại, đồ thị biên độ và cao độ ước tính, điểm khớp nội dung nhận dạng khi trình duyệt hỗ trợ. Điểm này chưa chấm chuẩn thanh điệu/phát âm.
+- Đã kiểm tra trong Chrome headless với API thật: giao diện tiếng Việt render, lưu onboarding hoạt động, đổi sang tiếng Anh giữ nội dung tiếng Trung, nộp bài có phản hồi; tại viewport 390px không còn tràn ngang toàn trang.
+- Với micro giả lập, ghi âm/nghe lại hoạt động và đồ thị xuất 80 cột biên độ cùng các đoạn cao độ ước tính. Nhận dạng tiếng Trung không trả lời trong môi trường kiểm tra này nên không hiển thị điểm. Vẫn cần thử micro, giọng đọc và nhận dạng trên thiết bị thật.
+
 ## Bản ổn định đã triển khai
 
 - `main` tại commit `60bfcd5`; repo GitHub `Spotlighterr/Chinese-Learning` đã đồng bộ.

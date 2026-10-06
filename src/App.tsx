@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
 import { progressApi, type Progress, type SegmentationResult } from './api/progress'
 import { Inspector } from './components/Inspector'
+import { LearningFlow } from './components/LearningFlow'
 import { SegmentationPractice } from './components/SegmentationPractice'
+import { SpeakingPractice } from './components/SpeakingPractice'
 import { sentenceHanzi, sentences, words, type Locale } from './data/curriculum'
 import { t } from './i18n'
 
@@ -111,6 +113,8 @@ export default function App() {
 
       {apiError && <div className="api-banner" role="alert"><span>{t(locale, 'apiError')}</span><button onClick={() => loadInitialProgress().then((value) => { setProgress(value); setApiError(false) }).catch(() => setApiError(true))}>{t(locale, 'retry')}</button></div>}
 
+      {progress && <LearningFlow locale={locale} progress={progress} onProgress={setProgress} onLocale={setLocale} />}
+
       <div className="workspace-grid">
         <nav className="lesson-sidebar" aria-label={t(locale, 'lessonList')}>
           <div className="sidebar-heading"><span className="eyebrow">{t(locale, 'lessonList')}</span><span>01 — 03</span></div>
@@ -155,7 +159,8 @@ export default function App() {
             <div className="decoder-footer"><span>{progress === null && !apiError ? t(locale, 'loading') : sentenceHanzi(sentence)}</span><button className={completed ? 'complete-button completed' : 'complete-button'} disabled={busy || completed || !progress} onClick={completeSentence}>{completed ? t(locale, 'markedUnderstood') : t(locale, 'markUnderstood')} <span aria-hidden="true">{completed ? '✓' : '↗'}</span></button></div>
           </section>
 
-          <SegmentationPractice key={sentence.id} sentence={sentence} locale={locale} best={progress?.bestBySentence[sentence.id]} onCheck={checkSegmentation} />
+          <SpeakingPractice key={`speaking-${sentence.id}`} locale={locale} hanzi={sentenceHanzi(sentence)} pinyin={sentence.tokens.map((id) => words[id].pinyin).join(' ')} />
+          <SegmentationPractice key={`segmentation-${sentence.id}`} sentence={sentence} locale={locale} best={progress?.bestBySentence[sentence.id]} onCheck={checkSegmentation} />
         </div>
 
         <Inspector locale={locale} word={selectedWord} activeCharacter={activeCharacter} saved={saved} busy={busy || !progress} onCharacter={setActiveCharacter} onWord={chooseWord} onSave={saveWord} />

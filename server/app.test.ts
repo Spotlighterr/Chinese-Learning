@@ -5,7 +5,7 @@ import { createApp } from './app.ts'
 import { createStore } from './db.ts'
 import type { Progress } from './db.ts'
 import { contentMatch } from '../src/speaking-score.ts'
-import { characters, sentences, words } from '../src/data/curriculum.ts'
+import { characters, sentenceHanzi, sentences, words } from '../src/data/curriculum.ts'
 import { lessons } from '../src/data/lessons.ts'
 import { courseLessonIds, courseUnits } from '../src/data/course.ts'
 
@@ -17,6 +17,7 @@ test('course content has complete references and translations', () => {
   assert.equal(new Set(courseUnits.map((unit) => unit.id)).size, courseUnits.length)
   const sentenceIds = new Set(sentences.map((sentence) => sentence.id))
   assert.equal(sentenceIds.size, sentences.length)
+  assert.equal(sentenceHanzi(sentences.find((sentence) => sentence.id === 'ask-name')!), '你叫什么名字？')
   for (const sentence of sentences) {
     assert.ok(words[sentence.focusWordId], sentence.id)
     for (const id of sentence.tokens) assert.ok(words[id], `${sentence.id}: ${id}`)

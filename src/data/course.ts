@@ -25,6 +25,12 @@ export const courseUnits: CourseUnit[] = [
     lessonIds: ['drink-water', 'go-school', 'want-study'],
   },
   {
+    id: 'everyday-talk', stage: 'foundation',
+    title: { 'vi-VN': 'Giao tiếp hằng ngày', 'en-US': 'Everyday conversation' },
+    summary: { 'vi-VN': 'Cảm ơn, hỏi tên và nói thứ trong tuần.', 'en-US': 'Thank someone, ask a name and say a weekday.' },
+    lessonIds: ['thank-someone', 'ask-a-name', 'say-weekday'],
+  },
+  {
     id: 'decode-sentences', stage: 'foundation',
     title: { 'vi-VN': 'Giải mã câu', 'en-US': 'Decode sentences' },
     summary: { 'vi-VN': 'Từ ghép, trật tự từ và manh mối gợi nghĩa/gợi âm.', 'en-US': 'Compound words, word order and meaning/sound clues.' },

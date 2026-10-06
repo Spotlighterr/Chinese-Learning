@@ -26,6 +26,7 @@ export type Word = {
 export type Sentence = {
   id: string
   tokens: string[]
+  punctuation?: '。' | '？'
   focusWordId: string
   translation: LocalizedText
   insight: LocalizedText
@@ -86,6 +87,15 @@ export const characters: Record<string, Character> = {
   },
   好: { hanzi: '好', pinyin: 'hǎo', meaning: { 'vi-VN': 'tốt; khỏe (trong lời chào)', 'en-US': 'good; well (in greetings)' } },
   是: { hanzi: '是', pinyin: 'shì', meaning: { 'vi-VN': 'là', 'en-US': 'to be' } },
+  谢: { hanzi: '谢', pinyin: 'xiè', meaning: { 'vi-VN': 'cảm ơn (trong 谢谢)', 'en-US': 'thank (in 谢谢)' } },
+  叫: { hanzi: '叫', pinyin: 'jiào', meaning: { 'vi-VN': 'gọi; tên là', 'en-US': 'call; be named' } },
+  什: { hanzi: '什', pinyin: 'shén', meaning: { 'vi-VN': 'trong 什么', 'en-US': 'in 什么' } },
+  么: { hanzi: '么', pinyin: 'me', meaning: { 'vi-VN': 'trong 什么', 'en-US': 'in 什么' } },
+  名: { hanzi: '名', pinyin: 'míng', meaning: { 'vi-VN': 'tên', 'en-US': 'name' } },
+  字: { hanzi: '字', pinyin: 'zì', meaning: { 'vi-VN': 'chữ; tên (trong 名字)', 'en-US': 'character; name (in 名字)' } },
+  星: { hanzi: '星', pinyin: 'xīng', meaning: { 'vi-VN': 'sao; trong 星期', 'en-US': 'star; in 星期' } },
+  期: { hanzi: '期', pinyin: 'qī', meaning: { 'vi-VN': 'kỳ; trong 星期', 'en-US': 'period; in 星期' } },
+  一: { hanzi: '一', pinyin: 'yī', meaning: { 'vi-VN': 'một', 'en-US': 'one' } },
 }
 
 export const components: Record<string, { meaning: LocalizedText }> = {
@@ -133,6 +143,11 @@ export const words: Record<string, Word> = {
   xinqing: { id: 'xinqing', hanzi: '心情', pinyin: 'xīnqíng', meaning: { 'vi-VN': 'tâm trạng', 'en-US': 'mood' } },
   hao: { id: 'hao', hanzi: '好', pinyin: 'hǎo', meaning: { 'vi-VN': 'tốt; khỏe', 'en-US': 'good; well' } },
   shi: { id: 'shi', hanzi: '是', pinyin: 'shì', meaning: { 'vi-VN': 'là', 'en-US': 'to be' } },
+  xiexie: { id: 'xiexie', hanzi: '谢谢', pinyin: 'xièxie', meaning: { 'vi-VN': 'cảm ơn', 'en-US': 'thank you' } },
+  jiao: { id: 'jiao', hanzi: '叫', pinyin: 'jiào', meaning: { 'vi-VN': 'gọi; tên là', 'en-US': 'call; be named' } },
+  shenme: { id: 'shenme', hanzi: '什么', pinyin: 'shénme', meaning: { 'vi-VN': 'gì', 'en-US': 'what' } },
+  mingzi: { id: 'mingzi', hanzi: '名字', pinyin: 'míngzi', meaning: { 'vi-VN': 'tên', 'en-US': 'name' } },
+  xingqiyi: { id: 'xingqiyi', hanzi: '星期一', pinyin: 'xīngqīyī', meaning: { 'vi-VN': 'thứ Hai', 'en-US': 'Monday' } },
 }
 
 export const sentences: Sentence[] = [
@@ -173,6 +188,24 @@ export const sentences: Sentence[] = [
     focus: { 'vi-VN': 'Thêm 想 vào mẫu câu đã học để nói mong muốn.', 'en-US': 'Add 想 to a familiar pattern to express a wish.' },
   },
   {
+    id: 'thank-you', tokens: ['xiexie', 'ni'], focusWordId: 'xiexie',
+    translation: { 'vi-VN': 'Cảm ơn bạn.', 'en-US': 'Thank you.' },
+    insight: { 'vi-VN': '谢谢 là một từ lặp lại chữ 谢; tiếng thứ hai thường đọc nhẹ hơn. Sau đó có thể thêm 你 để nói rõ người được cảm ơn.', 'en-US': '谢谢 repeats 谢 as one word; the second syllable is usually lighter. Add 你 to address the person you thank.' },
+    focus: { 'vi-VN': 'Nghe và dùng lời cảm ơn ngắn.', 'en-US': 'Hear and use a short expression of thanks.' },
+  },
+  {
+    id: 'ask-name', tokens: ['ni', 'jiao', 'shenme', 'mingzi'], punctuation: '？', focusWordId: 'shenme',
+    translation: { 'vi-VN': 'Bạn tên là gì?', 'en-US': 'What is your name?' },
+    insight: { 'vi-VN': '你 / 叫 / 什么 / 名字 là câu hỏi về tên. 什么 nghĩa là “gì”, đứng trước danh từ 名字. Dấu ？ cho thấy đây là câu hỏi; không tự đổi thứ tự như câu hỏi tiếng Anh.', 'en-US': '你 / 叫 / 什么 / 名字 asks for a name. 什么 means “what” and comes before 名字. The question keeps the basic Chinese word order.' },
+    focus: { 'vi-VN': 'Nhận ra từ hỏi 什么 và dấu câu hỏi.', 'en-US': 'Recognize the question word 什么 and question punctuation.' },
+  },
+  {
+    id: 'weekday', tokens: ['jintian', 'shi', 'xingqiyi'], focusWordId: 'xingqiyi',
+    translation: { 'vi-VN': 'Hôm nay là thứ Hai.', 'en-US': 'Today is Monday.' },
+    insight: { 'vi-VN': '今天 là “hôm nay”; 星期一 là “thứ Hai”. Sau 星期, số 一 chỉ ngày đầu tuần trong cách gọi này.', 'en-US': '今天 means “today”; 星期一 means “Monday”. After 星期, 一 names the first weekday in this pattern.' },
+    focus: { 'vi-VN': 'Nói ngày trong tuần bằng 星期 và số.', 'en-US': 'Say weekdays with 星期 and a number.' },
+  },
+  {
     id: 'school',
     tokens: ['wo', 'jintian', 'xiawu', 'xiang', 'qu', 'xuexiao', 'xuexi', 'zhongwen'],
     focusWordId: 'xuexiao',
@@ -199,7 +232,7 @@ export const sentences: Sentence[] = [
 ]
 
 export function sentenceHanzi(sentence: Sentence): string {
-  return sentence.tokens.map((id) => words[id].hanzi).join('') + '。'
+  return sentence.tokens.map((id) => words[id].hanzi).join('') + (sentence.punctuation ?? '。')
 }
 
 export function relatedWords(hanzi: string, excludeId?: string): Word[] {

@@ -13,6 +13,8 @@ Ngày kiểm kê: 2026-10-07. Các thư mục `HSK1-...` đến `HSK6-...` nằm
 
 Đã mở trang đầu của sách cấp 1, 3 và 6. Đây là bộ **Giáo trình chuẩn HSK** bản tiếng Việt của Nhân Trí Việt/NXB Tổng hợp TP.HCM, theo cấu trúc sáu cấp của bộ giáo trình cũ. Phần giới thiệu ở sách cấp 1 nêu thang từ vựng 150/300/600/1200/2500/5000+ từ cho các cấp 1–6. Các PDF đã kiểm tra là bản quét ảnh, không có lớp chữ trích xuất được; muốn đối chiếu mục lục chi tiết cần OCR và soát thủ công.
 
+Đã xem mục lục cấp 1: hai bài đầu tập trung vào phát âm; các chủ đề tiếp theo gồm chào hỏi, cảm ơn, hỏi tên, người thân, năng lực ngôn ngữ, ngày tháng, đồ uống, nơi làm việc và xin phép. Cụm `everyday-talk` trong app bắt đầu lấp ba khoảng trống đầu: cảm ơn, hỏi tên, thứ trong tuần. Đây là câu và bài tập do app tự biên soạn, không sao chép bài trong sách.
+
 Trang bản quyền của sách cấp 1 ghi hạn chế sao chép và đưa nội dung lên hệ thống truy cập/học trực tuyến. Vì vậy, app chỉ dùng bộ sách để **tham khảo thứ tự chủ đề và đối chiếu kiến thức**. Câu ví dụ, giải thích, bài tập và audio phát hành trong app phải được biên soạn/ghi âm độc lập, trừ khi có giấy phép sử dụng riêng. Các MP3 trong thư mục cũng chưa được tích hợp vào sản phẩm.
 
 Trước khi gắn nhãn chuẩn HSK cho bài học, cần chọn và ghi rõ phiên bản đề cương thi. [Trang đề cương của Chinese Tests](https://www.chinesetest.cn/syllabus) hiện có mục HSK 3.0; không mặc định quy đổi bộ sách cũ thành đề cương mới.

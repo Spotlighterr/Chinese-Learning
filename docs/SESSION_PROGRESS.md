@@ -2,7 +2,7 @@
 
 ## Tiếp tục xây khóa học ngày 2026-10-07
 
-- Nhánh `feature/course-foundation` bổ sung 3 bài đầu về chào hỏi, giới thiệu và việc học, cùng 3 bài dùng lại mẫu câu; tổng cộng hiện có 3 cụm/9 bài/9 câu/23 câu hỏi. Có câu hỏi gõ chữ Hán qua bộ gõ Pinyin, bài nghe hiểu, và chấm trên server.
+- Nhánh `feature/course-foundation` bổ sung các bài về chào hỏi, giới thiệu, dùng lại mẫu câu và giao tiếp hằng ngày; tổng cộng hiện có 4 cụm/12 bài/12 câu/30 câu hỏi. Có câu hỏi gõ chữ Hán qua bộ gõ Pinyin, bài nghe hiểu, và chấm trên server.
 - API tiến độ trả về các mã câu hỏi từng trả lời đúng; giao diện chọn bài còn thiếu và tiếp tục từ câu chưa xong sau khi tải lại. Lộ trình bài học được nhóm theo cụm và liên kết sang Bộ phân tích câu.
 - Kiểm tra toàn vẹn dữ liệu, API chấm gõ chữ Hán, `typecheck`, `test`, `build` đều qua. Chrome với backend thật đã xác nhận hồ sơ, trắc nghiệm, gõ Hán tự, tiếp tục bài sau tải lại; viewport 390px không tràn ngang.
 - Xem `docs/COURSE_BUILD.md` để biết thứ tự mở rộng và tiêu chí gọi là khóa học hoàn chỉnh. Chưa phủ nội dung HSK 1–6; chưa chấm chuẩn phát âm/thanh điệu. Nhánh này chưa được đưa lên `main` hoặc server.

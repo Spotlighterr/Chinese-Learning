@@ -142,7 +142,7 @@ export default function App() {
                 {sentence.tokens.map((id, index) => {
                   const word = words[id]
                   return <button key={`${id}-${index}`} className={id === selectedWordId && !activeCharacter ? 'token active' : 'token'} onClick={() => chooseWord(id)} aria-pressed={id === selectedWordId && !activeCharacter} aria-label={`${word.hanzi}${showPinyin ? `, ${word.pinyin}` : ''}`}>
-                    <span className="token-hanzi">{word.hanzi}{index === sentence.tokens.length - 1 && <span className="inline-punctuation">。</span>}</span>
+                    <span className="token-hanzi">{word.hanzi}{index === sentence.tokens.length - 1 && <span className="inline-punctuation">{sentence.punctuation ?? '。'}</span>}</span>
                     {showPinyin && <span className="token-pinyin" aria-hidden="true">{word.pinyin}</span>}
                   </button>
                 })}

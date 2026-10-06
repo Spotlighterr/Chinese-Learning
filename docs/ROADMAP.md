@@ -6,7 +6,7 @@ Website frontend/backend chạy cục bộ; giao diện `vi-VN` mặc định; d
 
 ## Mốc 2 — MVP đầy đủ
 
-Onboarding tiếng Việt; hồ sơ mục tiêu; bài học và bài tập điều khiển bằng dữ liệu; SRS cơ bản; dashboard năng lực; kiểm thử toàn bộ luồng không cần tiếng Anh; tăng nội dung seed đã biên tập. Nhánh `feature/course-foundation` hiện có 9 bài/23 câu hỏi, gồm lựa chọn, nghe hiểu, xếp từ và gõ Hán tự; tiến độ từng câu được lưu. Cần mở rộng nội dung ở quy mô thực tế và kiểm thử thiết bị thật trước khi gọi là MVP đầy đủ.
+Onboarding tiếng Việt; hồ sơ mục tiêu; bài học và bài tập điều khiển bằng dữ liệu; SRS cơ bản; dashboard năng lực; kiểm thử toàn bộ luồng không cần tiếng Anh; tăng nội dung seed đã biên tập. Nhánh `feature/course-foundation` hiện có 12 bài/30 câu hỏi, gồm lựa chọn, nghe hiểu, xếp từ và gõ Hán tự; tiến độ từng câu được lưu. Cần mở rộng nội dung ở quy mô thực tế và kiểm thử thiết bị thật trước khi gọi là MVP đầy đủ.
 
 ## Mốc 3 — Năng lực mở rộng
 

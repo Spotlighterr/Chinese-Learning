@@ -48,7 +48,7 @@ export function SegmentationPractice({ sentence, locale, best, onCheck }: Props)
           onClick={() => toggle(index + 1)}
         ><span aria-hidden="true">{positions.includes(index + 1) ? '／' : '·'}</span></button>}
       </span>)}
-      <span className="segmentation-period">。</span>
+      <span className="segmentation-period">{sentence.punctuation ?? '。'}</span>
     </div>
     <div className="practice-actions">
       <button className="primary-button" onClick={submit} disabled={busy || result !== null}>{t(locale, 'check')} <span aria-hidden="true">↗</span></button>

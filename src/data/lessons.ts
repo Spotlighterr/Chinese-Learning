@@ -214,6 +214,87 @@ export const lessons: Lesson[] = [
     ],
   },
   {
+    id: 'thank-someone',
+    title: { 'vi-VN': 'Nói lời cảm ơn', 'en-US': 'Thank someone' },
+    summary: { 'vi-VN': 'Nghe và gõ 谢谢你; nhận ra 谢谢 là một từ.', 'en-US': 'Hear and type 谢谢你; recognize 谢谢 as one word.' },
+    sentenceId: 'thank-you',
+    exercises: [
+      {
+        id: 'thanks-listen', kind: 'listen-choice', skill: 'listening',
+        prompt: { 'vi-VN': 'Nghe câu và chọn ý đúng.', 'en-US': 'Listen and choose the meaning.' },
+        options: [
+          { 'vi-VN': 'Cảm ơn bạn.', 'en-US': 'Thank you.' },
+          { 'vi-VN': 'Xin chào.', 'en-US': 'Hello.' },
+          { 'vi-VN': 'Tôi là học sinh.', 'en-US': 'I am a student.' },
+        ],
+        correctIndex: 0,
+        explanation: { 'vi-VN': 'Câu vừa nghe là 谢谢你; 谢谢 nghĩa là cảm ơn.', 'en-US': 'You heard 谢谢你; 谢谢 means thank you.' },
+      },
+      {
+        id: 'thanks-type', kind: 'input', skill: 'hanzi-typing',
+        prompt: { 'vi-VN': 'Gõ “Cảm ơn bạn” bằng chữ Hán.', 'en-US': 'Type “Thank you” in Hanzi.' },
+        answer: '谢谢你',
+        explanation: { 'vi-VN': '谢谢 là một từ hai âm tiết; thêm 你 để nói với bạn.', 'en-US': '谢谢 is one two-syllable word; add 你 to address someone.' },
+      },
+    ],
+  },
+  {
+    id: 'ask-a-name',
+    title: { 'vi-VN': 'Hỏi tên', 'en-US': 'Ask a name' },
+    summary: { 'vi-VN': 'Dùng 什么 để hỏi và nhận ra 名字 là một từ.', 'en-US': 'Use 什么 to ask; recognize 名字 as one word.' },
+    sentenceId: 'ask-name',
+    exercises: [
+      {
+        id: 'name-word', kind: 'choice', skill: 'meaning',
+        prompt: { 'vi-VN': 'Trong 你叫什么名字？, 什么 nghĩa là gì?', 'en-US': 'In 你叫什么名字？, what does 什么 mean?' },
+        options: [
+          { 'vi-VN': 'gì', 'en-US': 'what' },
+          { 'vi-VN': 'tên', 'en-US': 'name' },
+          { 'vi-VN': 'bạn', 'en-US': 'you' },
+        ],
+        correctIndex: 0,
+        explanation: { 'vi-VN': '什么 / shénme nghĩa là “gì”; 名字 / míngzi là “tên”.', 'en-US': '什么 / shénme means “what”; 名字 / míngzi means “name”.' },
+      },
+      {
+        id: 'name-order', kind: 'order', skill: 'sentence-order',
+        prompt: { 'vi-VN': 'Sắp xếp câu hỏi “Bạn tên là gì?”.', 'en-US': 'Arrange the question “What is your name?”' },
+        wordIds: ['mingzi', 'jiao', 'ni', 'shenme'], correctOrder: ['ni', 'jiao', 'shenme', 'mingzi'],
+        explanation: { 'vi-VN': 'Thứ tự là 你 / 叫 / 什么 / 名字. 什么 đứng trước từ cần hỏi.', 'en-US': 'The order is 你 / 叫 / 什么 / 名字. 什么 comes before the noun being asked about.' },
+      },
+      {
+        id: 'name-type', kind: 'input', skill: 'hanzi-typing',
+        prompt: { 'vi-VN': 'Gõ “Bạn tên là gì?” bằng chữ Hán.', 'en-US': 'Type “What is your name?” in Hanzi.' },
+        answer: '你叫什么名字',
+        explanation: { 'vi-VN': 'Bạn có thể gõ câu có hoặc không có dấu ？.', 'en-US': 'You can type it with or without the ？ punctuation mark.' },
+      },
+    ],
+  },
+  {
+    id: 'say-weekday',
+    title: { 'vi-VN': 'Nói thứ trong tuần', 'en-US': 'Say a weekday' },
+    summary: { 'vi-VN': 'Kết hợp 今天, 是 và 星期一 để nói hôm nay là thứ Hai.', 'en-US': 'Combine 今天, 是 and 星期一 to say today is Monday.' },
+    sentenceId: 'weekday',
+    exercises: [
+      {
+        id: 'monday-meaning', kind: 'choice', skill: 'meaning',
+        prompt: { 'vi-VN': '星期一 nghĩa là gì?', 'en-US': 'What does 星期一 mean?' },
+        options: [
+          { 'vi-VN': 'thứ Hai', 'en-US': 'Monday' },
+          { 'vi-VN': 'hôm nay', 'en-US': 'today' },
+          { 'vi-VN': 'một ngày', 'en-US': 'one day' },
+        ],
+        correctIndex: 0,
+        explanation: { 'vi-VN': '星期一 / xīngqīyī là thứ Hai; 今天 / jīntiān là hôm nay.', 'en-US': '星期一 / xīngqīyī is Monday; 今天 / jīntiān is today.' },
+      },
+      {
+        id: 'weekday-order', kind: 'order', skill: 'sentence-order',
+        prompt: { 'vi-VN': 'Sắp xếp “Hôm nay là thứ Hai”.', 'en-US': 'Arrange “Today is Monday.”' },
+        wordIds: ['xingqiyi', 'shi', 'jintian'], correctOrder: ['jintian', 'shi', 'xingqiyi'],
+        explanation: { 'vi-VN': '今天 / 是 / 星期一. Ở đây 是 nối hôm nay với tên ngày trong tuần.', 'en-US': '今天 / 是 / 星期一. Here 是 links today with the weekday.' },
+      },
+    ],
+  },
+  {
     id: 'see-words',
     title: { 'vi-VN': 'Nhìn ra từng từ', 'en-US': 'See the words' },
     summary: { 'vi-VN': 'Một chữ có thể nằm trong nhiều từ. Đọc câu theo các đơn vị có nghĩa.', 'en-US': 'A character can belong to many words. Read in meaningful units.' },

@@ -2,7 +2,7 @@
 
 ## Trạng thái hiện tại
 
-Phiên bản dữ liệu `foundation-2026-10` có 3 cụm, 9 bài, 9 câu và 23 câu hỏi. Đây là phần nhập môn tự biên soạn, chưa được xác nhận là danh mục HSK chính thức. Mục tiêu HSK trong hồ sơ là đích học của người dùng, không phải nhãn chứng nhận cho nội dung hiện có.
+Phiên bản dữ liệu `foundation-2026-10` có 4 cụm, 12 bài, 12 câu và 30 câu hỏi. Đây là phần nhập môn tự biên soạn, chưa được xác nhận là danh mục HSK chính thức. Mục tiêu HSK trong hồ sơ là đích học của người dùng, không phải nhãn chứng nhận cho nội dung hiện có.
 
 ## Thứ tự triển khai
 
